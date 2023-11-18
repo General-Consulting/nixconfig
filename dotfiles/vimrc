@@ -1,0 +1,16 @@
+set expandtab               "Tab key inserts spaces
+set tabstop=2               "Use two spaces for tabs
+set shiftwidth=2            "Use two spaces for auto-indent
+set autoindent              "Auto indent based on previous line
+
+let mapleader = ","
+
+" ,n to toggle nerd tree directory
+map <Leader>n :NERDTreeToggle<CR>
+
+" Ctrl+h and Ctrl+l to navigate through tabs
+map <C-h> gT
+map <C-l> gt
+
+
+let NERDTreeQuitOnOpen = 1

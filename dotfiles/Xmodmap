@@ -1,0 +1,18 @@
+! Clear the current caps lock definition
+clear Lock
+ 
+! Make Caps Lock act as a Mode_switch key
+keycode 66 = Mode_switch
+
+! fix the 
+keycode 56 = b B
+
+! caps + esc = backtick, shift + esc = tilde
+keysym Escape = Escape asciitilde grave 
+
+! caps + hkjl = arrow keys
+keysym h = h H Left NoSymbol Left
+keysym j = j J Down NoSymbol Down
+keysym k = k K Up NoSymbol Up
+keysym l = l L Right NoSymbol Right
+ 
