@@ -21,6 +21,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernelParams = [
+  "video=DP-1:3840x2160@60"
+  "video=HDMI-A-1:3840x2160@60"
+  ];
+
   networking.hostName = "nixos"; # Define your hostname.
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -43,9 +48,26 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  i18n.consoleFont = "latarcyrheb-sun32";
+
+  fonts.packages = with pkgs; [
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  liberation_ttf
+  fira-code
+  fira-code-symbols
+  mplus-outline-fonts.githubRelease
+  dina-font
+  proggyfonts
+];
+
   services.xserver = {
+    excludePackages = [pkgs.xterm];
     enable = true;
     videoDrivers = [ "displaylink" "modesetting" "amdgpu"];
+    dpi = 180;
+
     desktopManager = {
       pantheon.enable = false;
       pantheon.extraWingpanelIndicators = with pkgs; [
@@ -60,7 +82,6 @@
         extraPackages = hpkgs: [
           hpkgs.xmobar
         ];
-        config = builtins.readFile /home/geoff/nixconfig/dotfiles/xmonad.hs;
       };
 
 
@@ -76,8 +97,8 @@
     };
     layout = "us";
     xkbVariant = "";
-    displayManager.setupCommands = ''
-      LEFT='DP-1'
+    displayManager.sessionCommands = ''
+      LEFT='DP-3'
       RIGHT='HDMI-1'
       ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
       ${pkgs.xorg.xmodmap}/bin/xmodmap /home/geoff/nixconfig/dotfiles/Xmodmap
@@ -156,6 +177,10 @@
   ];
 
 
+  environment.variables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+  };
 
 
   programs.noisetorch.enable = true;
@@ -183,7 +208,8 @@
   # Open ports in the firewall.
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 2375 22 80 443 4000];
+  networking.firewall.allowedTCPPorts = [ 2375 22 80 443 ];
+  networking.firewall.allowedTCPPortRanges = [ {from = 4000; to = 5550;} ];
   networking.firewall.allowedUDPPorts = [ 24800 ];
 
   system.stateVersion = "23.05"; 

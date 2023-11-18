@@ -18,12 +18,17 @@
     pkgs.direnv
     pkgs.chromium
     pkgs.google-chrome
+    pkgs.zoom-us
+    pkgs.xclip
+    pkgs.scrot
+    pkgs.newman
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
    ".Xmodmap".source = ../../nixconfig/dotfiles/Xmodmap;
+   ".xmonad/xmonad.hs".source = ../../nixconfig/dotfiles/xmonad.hs;
   };
 
   programs.rofi = {
@@ -32,11 +37,8 @@
   };
 
 
-  programs.bash = {
+  programs.zsh = {
     enable = true;
-    historyControl = [ "ignoredups" ];
-    historySize = 1000000;
-    historyFileSize = 1000000;
     initExtra = ''
       set -o vi
     '';
@@ -51,9 +53,11 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 
