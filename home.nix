@@ -26,6 +26,11 @@
    ".Xmodmap".source = ../../nixconfig/dotfiles/Xmodmap;
   };
 
+  programs.rofi = {
+    enable = true;
+    terminal = "${pkgs.alacritty}/bin/alacritty";
+  };
+
 
   programs.bash = {
     enable = true;

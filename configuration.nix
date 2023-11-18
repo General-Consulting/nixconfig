@@ -43,20 +43,44 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     videoDrivers = [ "displaylink" "modesetting" "amdgpu"];
     desktopManager = {
-      plasma5.enable = true;
+      pantheon.enable = false;
+      pantheon.extraWingpanelIndicators = with pkgs; [
+        monitor
+        wingpanel-indicator-ayatana
+      ];
     };
-    displayManager.sddm.enable = true;
+    windowManager = {
+      xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = hpkgs: [
+          hpkgs.xmobar
+        ];
+        config = builtins.readFile /home/geoff/nixconfig/dotfiles/xmonad.hs;
+      };
+
+
+    };
+
+    displayManager = {
+      defaultSession = "none+xmonad";
+      lightdm.enable = true;
+      lightdm.greeters.enso = {
+        enable = true;
+        blur = true;
+      };
+    };
     layout = "us";
     xkbVariant = "";
     displayManager.setupCommands = ''
       LEFT='DP-1'
       RIGHT='HDMI-1'
       ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
+      ${pkgs.xorg.xmodmap}/bin/xmodmap /home/geoff/nixconfig/dotfiles/Xmodmap
     '';
     # displayManager.sessionCommands = ''
     #   ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
@@ -65,6 +89,22 @@
 
   services.printing.enable = true;
 
+  environment.pantheon.excludePackages = with pkgs.pantheon; [
+    elementary-music
+    elementary-photos
+    elementary-videos 
+    epiphany
+  ];
+
+
+  systemd.user.services.indicatorapp = {
+    description = "indicator-application-gtk3";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.indicator-application-gtk3}/libexec/indicator-application/indicator-application-service";
+    };
+  };
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -88,6 +128,7 @@
       home-manager
       xorg.xmodmap
     ];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -96,47 +137,42 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    appeditor
+    formatter
+    gnome.simple-scan
+    indicator-application-gtk3
     wget
     curl
     bind
     git
+    vifm-full
+    zsh
+    oh-my-zsh
+    alacritty
+    gnumake
+    fzf
+    arandr
+    dmenu
   ];
 
-
-services.xserver.displayManager.sessionCommands =
-  let
-    xmodmapConfig = pkgs.writeText "xkb-layout" ''
-   ! Clear the current caps lock definition
-   clear Lock
-  
-   ! Make Caps Lock act as a Mode_switch key
-   keycode 66 = Mode_switch
-
-   ! fix the 
-   keycode 56 = b B
-
-   ! caps + esc = backtick, shift + esc = tilde
-   keysym Escape = Escape asciitilde grave 
-
-   ! caps + hkjl = arrow keys
-   keysym h = h H Left NoSymbol Left
-   keysym j = j J Down NoSymbol Down
-   keysym k = k K Up NoSymbol Up
-   keysym l = l L Right NoSymbol Right
-    '';
-  in
-  "${pkgs.xorg.xmodmap}/bin/xmodmap ${xmodmapConfig}";
 
 
 
   programs.noisetorch.enable = true;
-
-
  
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
  
  
+    programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    ohMyZsh.theme = "lambda";
+    ohMyZsh.enable = true;
+    ohMyZsh.plugins = [ "git" ];
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
  
  
   # List services that you want to enable:
