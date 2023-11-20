@@ -68,12 +68,6 @@
     videoDrivers = [ "displaylink" "modesetting" "amdgpu"];
     dpi = 180;
 
-    lightdm.enable = true;
-    lightdm.greeters.enso = {
-      enable = true;
-      blur = true;
-    };
-
     windowManager = {
       xmonad = {
         enable = true;
@@ -86,6 +80,13 @@
 
     displayManager = {
       defaultSession = "none+xmonad";
+
+      lightdm.enable = true;
+      lightdm.greeters.enso = {
+        enable = true;
+        blur = true;
+      };
+
       startx.enable = true;
     };
 
