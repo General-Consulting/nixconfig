@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
-
+sdkflj
 {
   home.username = "geoff";
-  home.homeDirectory = "/home/geoff";
+  h;ome.homeDirectory = "/home/geoff";
+  0
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
