@@ -1,3 +1,7 @@
-home-manager switch -n -I ./home.nix &&  git add . && git commit -m 'capturing new nixos config' \
-&& home-manager switch -I ./home.nix
-git push
+home-manager switch -n -f ./home.nix && \
+  cp ./home.nix ~/.config/home-manager/
+  git add . && \
+  git commit -m 'capturing new home-manager config' && \
+  home-manager switch  \
+    &&\
+  git push

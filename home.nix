@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
-sdkflj
 {
   home.username = "geoff";
-  h;ome.homeDirectory = "/home/geoff";
-  0
+  home.homeDirectory = "/home/geoff";
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
@@ -30,9 +28,9 @@ sdkflj
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-   ".Xmodmap".source = ../../nixconfig/dotfiles/Xmodmap;
-   ".xmonad/xmonad.hs".source = ../../nixconfig/dotfiles/xmonad.hs;
-   ".xinitrc".source = ../../nixconfig/dotfiles/xinitrc;
+   ".Xmodmap".source = ./dotfiles/Xmodmap;
+   ".xmonad/xmonad.hs".source = ./dotfiles/xmonad.hs;
+   ".xinitrc".source = ./dotfiles/xinitrc;
   };
 
   programs.rofi = {
