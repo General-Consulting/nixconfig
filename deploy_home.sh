@@ -1,4 +1,4 @@
-backup_file="~/.config/home-manager/home.nix"
+backup_file="../.config/home-manager/home.nix"
 backup_dir="./"
 backup_base_name="home.nix.host.backup"
 backup_number=0
