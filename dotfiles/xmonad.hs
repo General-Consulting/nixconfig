@@ -23,7 +23,7 @@ myConfig = def
   `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command -lock")
     , ("M-C-s", unGrab *> spawn "scrot -s"        )
-    , ("M-g"  , spawn "google-chrome-stable --profile-directory=/home/geoff/.config/google-chrome/Default/"                   )
+    , ("M-g"  , spawn "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
     , ("M-f"  , spawn "firefox"                   )
     , ("M-p"  , spawn "rofi -show run")
     ] 
@@ -44,13 +44,4 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
     delta    = 3/100  -- Percent of screen to increment by when resizing panes
 
 
-
-myStartupHook :: X ()
-myStartupHook = do
---spawnOnce "trayer --edge top --align right --SetDockType true \
---          \--SetPartialStrut true --expand true --width 10 \
---          \--transparent true --tint 0x5f5f5f --height 18"
---spawnOnce "feh --bg-fill --no-fehbg ~/.wallpapers/haskell-red-noise.png"
-
-  spawnOnce "google-chrome"
-  spawnOnce "xmodmap ~/.Xmodmap"
+fd

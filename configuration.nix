@@ -12,9 +12,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
      # ./home-manager.nix
-     /home/geoff/nixconfig/nixos-hardware/common/cpu/amd
-     /home/geoff/nixconfig/nixos-hardware/common/gpu/amd
-     /home/geoff/nixconfig/nixos-hardware/common/cpu/amd/pstate.nix
+     ./nixos-hardware/common/cpu/amd
+     ./nixos-hardware/common/gpu/amd
+     ./nixos-hardware/common/cpu/amd/pstate.nix
     ];
 
   # Bootloader.
@@ -22,7 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelParams = [
-  "video=DP-1:3840x2160@60"
+  "video=DP-3:3840x2160@60"
   "video=HDMI-A-1:3840x2160@60"
   ];
 
@@ -68,13 +68,12 @@
     videoDrivers = [ "displaylink" "modesetting" "amdgpu"];
     dpi = 180;
 
-    desktopManager = {
-      pantheon.enable = false;
-      pantheon.extraWingpanelIndicators = with pkgs; [
-        monitor
-        wingpanel-indicator-ayatana
-      ];
+    lightdm.enable = true;
+    lightdm.greeters.enso = {
+      enable = true;
+      blur = true;
     };
+
     windowManager = {
       xmonad = {
         enable = true;
@@ -83,20 +82,14 @@
           hpkgs.xmobar
         ];
       };
-
-
     };
 
     displayManager = {
       defaultSession = "none+xmonad";
-      lightdm.enable = true;
-      lightdm.greeters.enso = {
-        enable = true;
-        blur = true;
-      };
+      startx.enable = true;
     };
+
     layout = "us";
-    xkbVariant = "";
     displayManager.sessionCommands = ''
       LEFT='DP-3'
       RIGHT='HDMI-1'
@@ -118,14 +111,6 @@
   ];
 
 
-  systemd.user.services.indicatorapp = {
-    description = "indicator-application-gtk3";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.indicator-application-gtk3}/libexec/indicator-application/indicator-application-service";
-    };
-  };
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -152,10 +137,8 @@
     shell = pkgs.zsh;
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     appeditor
@@ -174,6 +157,7 @@
     fzf
     arandr
     dmenu
+    nixpkgs-fmt
   ];
 
 

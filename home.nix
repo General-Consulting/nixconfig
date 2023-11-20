@@ -22,6 +22,8 @@
     pkgs.xclip
     pkgs.scrot
     pkgs.newman
+    pkgs.xorg.xev
+    pkgs.bruno
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -29,13 +31,13 @@
   home.file = {
    ".Xmodmap".source = ../../nixconfig/dotfiles/Xmodmap;
    ".xmonad/xmonad.hs".source = ../../nixconfig/dotfiles/xmonad.hs;
+   ".xinitrc".source = ../../nixconfig/dotfiles/xinitrc;
   };
 
   programs.rofi = {
     enable = true;
     terminal = "${pkgs.alacritty}/bin/alacritty";
   };
-
 
   programs.zsh = {
     enable = true;
