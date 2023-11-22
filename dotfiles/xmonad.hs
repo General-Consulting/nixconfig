@@ -22,7 +22,7 @@ myConfig = def
     }
   `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command -lock")
-    , ("M-C-s", unGrab *> spawn "scrot -s 'xclip -selection clipboard -t image/png -i $f'"        )
+    , ("M-C-s", unGrab *> spawn "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
     , ("M-g"  , spawn "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
     , ("M-f"  , spawn "firefox"                   )
     , ("M-p"  , spawn "rofi -show run")
