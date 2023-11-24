@@ -29,7 +29,7 @@ myConfig = def
     ] 
   `additionalKeys`
     [ 
-      
+      am  
       ((0, xF86XK_AudioLowerVolume         ), spawn "amixer set Master 5%-")
     , ((0, xF86XK_AudioRaiseVolume         ), spawn "amixer set Master 5%+")
     , ((mod4Mask .|. shiftMask, xK_m        ), spawn "echo 'Hi, mom!' | dzen2 -p 4") ]
