@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
 
   home.username = "geoff";
@@ -24,6 +24,7 @@
     pkgs.newman
     pkgs.xorg.xev
     pkgs.bruno
+    pkgs.nerdfonts
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
