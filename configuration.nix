@@ -173,6 +173,10 @@
  
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+
+  programs.ssh.extraConfig = ''
+    IdentityFile /home/geoff/.ssh/id_rsa_github
+  ''
  
  
     programs.zsh = {
