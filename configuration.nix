@@ -159,6 +159,7 @@
     arandr
     dmenu
     nixpkgs-fmt
+    lunarvim
   ];
 
 
