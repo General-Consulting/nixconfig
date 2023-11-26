@@ -176,10 +176,10 @@
 
   programs.ssh.extraConfig = ''
     IdentityFile /home/geoff/.ssh/id_rsa_github
-  ''
+  '';
  
  
-    programs.zsh = {
+  programs.zsh = {
     enable = true;
     enableCompletion = true;
     ohMyZsh.theme = "lambda";
