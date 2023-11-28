@@ -9,8 +9,8 @@
     ];
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-     # ./home-manager.nix
+     <home-manager/nixos>
+     ./hardware-configuration.nix
      ./nixos-hardware/common/cpu/amd
      ./nixos-hardware/common/gpu/amd
      ./nixos-hardware/common/cpu/amd/pstate.nix
