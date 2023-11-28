@@ -139,6 +139,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.home-manager.extraSpecialArgs = {
+    inherit pkgs;
+    inherit lib;
+  };
+
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     appeditor
