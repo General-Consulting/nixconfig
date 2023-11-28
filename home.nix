@@ -4,7 +4,7 @@
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
-  home.stateVersion = "23.11"; 
+  home.stateVersion = "24.05"; 
 
   home.packages = [
     pkgs.plantuml

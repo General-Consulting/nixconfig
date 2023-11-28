@@ -172,6 +172,10 @@
     GDK_DPI_SCALE = "0.5";
   };
 
+  programs.neovim = {
+  viAlias = true;
+  vimAlias = true;
+};
 
   programs.noisetorch.enable = true;
  
