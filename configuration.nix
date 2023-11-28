@@ -139,7 +139,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.home-manager.extraSpecialArgs = {
+  home-manager.extraSpecialArgs = {
     inherit pkgs;
     inherit lib;
   };
