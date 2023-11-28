@@ -1,4 +1,3 @@
-
 { config, pkgs, lib, ... }:
 
 {
@@ -177,7 +176,6 @@
   programs.ssh.extraConfig = ''
     IdentityFile /home/geoff/.ssh/id_rsa_github
   '';
- 
  
   programs.zsh = {
     enable = true;

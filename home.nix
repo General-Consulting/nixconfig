@@ -4,7 +4,7 @@
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
-  home.stateVersion = "24.05"; 
+  home.stateVersion = "23.11"; 
 
   home.packages = [
     pkgs.plantuml
@@ -26,7 +26,6 @@
     pkgs.bruno
     pkgs.nerdfonts
     pkgs.shellcheck
-    pkgs.nodePackages.wrangler
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
