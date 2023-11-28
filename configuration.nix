@@ -202,7 +202,7 @@
   networking.firewall.allowedTCPPortRanges = [ {from = 4000; to = 5550;} ];
   networking.firewall.allowedUDPPorts = [ 24800 ];
 
-  system.stateVersion = "23.05"; 
+  system.stateVersion = "24.05"; 
 
   virtualisation.docker.enable = true;
   
