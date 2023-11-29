@@ -14,7 +14,7 @@ import XMonad.Hooks.StatusBar.PP
 
 
 main :: IO ()
-main = xmonad $ ewmhFullscreen $ ewmh $ xmobarProp $ myConfig
+main = xmonad $ ewmhFullscreen $ ewmh $ myXmobarProp $ myConfig
 
 myConfig = def
     { 
@@ -79,7 +79,7 @@ xmobarConfig = Config { overrideRedirect = False
        , template = "%XMonadLog% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %EGPF% | %date% "
        }
 
-xmobarProp config =
+myXmobarProp config =
   withEasySB (statusBarProp "xmobar" (pure xmobarPP)) toggleStrutsKey config
 
 myXmobarPP :: PP
