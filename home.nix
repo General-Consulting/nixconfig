@@ -33,7 +33,7 @@
   home.file = {
    ".Xmodmap".source = ./dotfiles/Xmodmap;
    ".xmonad/xmonad.hs".source = ./dotfiles/xmonad.hs;
-   ".xinitrc".source = ./dotfiles/xinitrc;
+    #   ".xinitrc".source = ./dotfiles/xinitrc;
   };
 
   programs.rofi = {

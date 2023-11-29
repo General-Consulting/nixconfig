@@ -102,12 +102,6 @@
     };
 
     layout = "us";
-    displayManager.sessionCommands = ''
-      LEFT='DP-3'
-      RIGHT='HDMI-1'
-      ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
-      ${pkgs.xorg.xmodmap}/bin/xmodmap /home/geoff/nixconfig/dotfiles/Xmodmap
-    '';
     # displayManager.sessionCommands = ''
     #   ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
     # '';
