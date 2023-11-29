@@ -77,8 +77,20 @@
       };
     };
 
+    xrandrHeads = [
+     {
+       output = "HDMI-1";
+       primary = true;
+     }
+     {
+       output = "DP-3";
+       monitorConfig = "Option \"Rotate\" \"left\"";
+     }
+    ];
+
     displayManager = {
       defaultSession = "none+xmonad";
+
 
       lightdm.enable = true;
       lightdm.greeters.enso = {
