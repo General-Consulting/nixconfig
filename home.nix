@@ -34,6 +34,7 @@
    ".Xmodmap".source = ./dotfiles/Xmodmap;
    ".xmonad/xmonad.hs".source = ./dotfiles/xmonad.hs;
     #   ".xinitrc".source = ./dotfiles/xinitrc;
+    #".config/lvim/config.lua".source = ./dotfiles/lvim.config.lua;
   };
 
   programs.rofi = {
@@ -44,18 +45,18 @@
   programs.zsh = {
     enable = true;
     initExtra = ''
-      set -o vi
     '';
       shellAliases = {
     ll = "ls -l";
     vi = "lvim";
+    vim = "lvim";
   };
   };
 
 
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "lvim";
   };
 
 
