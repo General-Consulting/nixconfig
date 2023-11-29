@@ -44,7 +44,7 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
     delta    = 3/100  -- Percent of screen to increment by when resizing panes
 
 
-xmobarConfig = Config { overrideRedirect = False
+Config { overrideRedirect = False
        , font     = "xft:iosevka-9"
        , bgColor  = "#5f5f5f"
        , fgColor  = "#f8f8f2"
