@@ -4,7 +4,7 @@
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
-  home.stateVersion = "24.05"; 
+  home.stateVersion = "23.11"; 
 
   home.packages = [
     pkgs.plantuml
@@ -46,6 +46,10 @@
     initExtra = ''
       set -o vi
     '';
+      shellAliases = {
+    ll = "ls -l";
+    vi = "lvim";
+  };
   };
 
 
