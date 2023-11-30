@@ -32,7 +32,10 @@
   # plain files is through 'home.file'.
   home.file = {
    ".Xmodmap".source = ./dotfiles/Xmodmap;
-   ".xmonad/xmonad.hs".source = ./dotfiles/xmonad.hs;
+   ".xmonad/" = {
+      source = ./dotfiles/.xmonad;
+      recursive = true;
+    };
     #   ".xinitrc".source = ./dotfiles/xinitrc;
     #".config/lvim/config.lua".source = ./dotfiles/lvim.config.lua;
   };

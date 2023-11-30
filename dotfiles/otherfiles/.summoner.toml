@@ -1,0 +1,9 @@
+stack = true
+
+fullName = "Malte Neuss"
+
+github = true
+owner = "malteneuss"
+private = true
+
+extensions = ["OverloadedStrings", "NamedFieldPuns", "LambdaCase"]

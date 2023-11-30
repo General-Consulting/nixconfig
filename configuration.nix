@@ -84,7 +84,6 @@
      }
      {
        output = "DP-3";
-       monitorConfig = "Option \"Rotate\" \"left\"";
      }
     ];
 
@@ -170,6 +169,7 @@
     dmenu
     nixpkgs-fmt
     lunarvim
+    trayer
     haskellPackages.xmonad
     haskellPackages.xmobar
   ];
