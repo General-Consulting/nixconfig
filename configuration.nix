@@ -170,6 +170,8 @@
     dmenu
     nixpkgs-fmt
     lunarvim
+    haskellPackages.xmonad
+    haskellPackages.xmobar
   ];
 
 
