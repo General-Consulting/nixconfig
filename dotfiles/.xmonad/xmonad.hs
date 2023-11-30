@@ -23,7 +23,7 @@ import           XMonad.Layout.LayoutCombinators
                                                 , JumpToLayout(..)
                                                 )
 
-import           XMonad.StackSet         hiding ( workspaces )
+
 import           XMonad.Util.SpawnOnce          ( spawnOnce )
 import           XMonad.Util.Run                ( safeSpawn
                                                 , unsafeSpawn
@@ -96,11 +96,6 @@ import           XMonad.Actions.WindowGo        ( ifWindows
                                                 , ifWindow
                                                 )
 
--- This visual system consists of the following:
--- xmonad = a basic dynamic tiling windonw manager
--- xmobar = a simple statusbar on top of xmonad
--- dmenu = a simple program launcher that is started with win+p
--- trayer = an area next to xmobar where running apps like dropbox show clickable icons.
 
 main = do
 
@@ -114,35 +109,6 @@ main = do
 
 barSpawner :: ScreenId -> IO StatusBarConfig
 barSpawner (S screen) = let n = show screen in pure $ statusBarPropTo ("_XMONAD_LOG") ("xmobar ~/.xmonad/xmobar.hs -x " ++ n) (pure myXmobarPP)
--- barSpawner (S screen) = let n = show screen in pure $ statusBarPropTo ("_XMONAD_LOG_" ++ n) ("xmobar ~/.xmonad/xmobar.hs -x " ++ n) (pure myXmobarPP)
-
-myXmobarPP2 :: PP
-myXmobarPP2 = def
-    { ppSep             = magenta " • "
-    , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
-    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
-    -- , ppExtras          = [logTitles formatFocused formatUnfocused]
-    }
-  where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
-
-    -- | Windows should have *some* title, which should not not exceed a
-    -- sane length.
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
-
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ff79c6" ""
-    blue     = xmobarColor "#bd93f9" ""
-    white    = xmobarColor "#f8f8f2" ""
-    yellow   = xmobarColor "#f1fa8c" ""
-    red      = xmobarColor "#ff5555" ""
-    lowWhite = xmobarColor "#bbbbbb" ""
 
 overlayKeys baseConfig =
   addDescrKeys ((ctrlKey .|. winKey, xK_h), xMessage) myKeys baseConfig
@@ -198,20 +164,18 @@ myManageHook = composeAll
   -- , title =? "Microsoft Teams"  --> doIgnore
   -- , resource =? "microsoft teams - preview"  --> doIgnore
   , isDialog --> doCenterFloat
-  , namedScratchpadManageHook myScratchPads
   -- move transient windows like dialogs/alerts on top of their parents
   , transience'
   ]
 
-myLayouts =
-  renamed [Replace "Layout-Full"]  Full
-    -- ||| rename "Fullscreen" (noBorders Full) -- remove borders with single screen
-    ||| renamed [Replace "Layout-Master"] (Tall oneMasterWindow incStepSizePercent masterColumnSizePercent)
-    ||| TwoPane incStepSizePercent masterColumnSizePercent
- where -- default tiling algorithm partitions the screen into two panes
-  oneMasterWindow         = 1
-  incStepSizePercent      = 10 / 100
-  masterColumnSizePercent = 70 / 100
+myLayouts = tiled ||| Mirror tiled ||| Full ||| threeCol
+  where
+    threeCol = ThreeColMid nmaster delta ratio
+    tiled    = Tall nmaster delta ratio
+    nmaster  = 1      -- Default number of windows in the master pane
+    ratio    = 1/2    -- Default proportion of screen occupied by master pane
+    delta    = 3/100  -- Percent of screen to increment by when resizing panes
+
 myKeys baseConfig = concatMap
   ($ baseConfig)
   [ geoffShortCuts ]
@@ -231,125 +195,7 @@ geoffShortCuts baseConfig = [subtitle "Geoff"] ++ mkNamedKeymap
     , ("M-p"  , spawn "rofi -show run")
     ]
 
-fileShortcuts baseConfig = [subtitle "Files"] ++ mkNamedKeymap
-  baseConfig
-  [ ("M-d " ++ key, spawn' command)
-  | (key, command) <-
-    [ ("t", "freeplane /home/mahene/Documents/todo.mm")
-    , ("i", "freeplane /home/mahene/Documents/ideas.mm")
-    , ("s", "freeplane /home/mahene/Documents/songs.mm")
-    , ("d", "nautilus ~/Downloads/")
-    , ("h", "nautilus ~/")
-    , ("v", "nautilus ~/Videos/")
-    , ("f", "nautilus ~/Photos/")
-    , ("p", "nautilus ~/Documents/papers/")
-    , ("m", "nautilus ~/Music/meditations")
-    , ( "l"
-      , "nautilus ~/Documents/read-lookup"
-      ) -- lookup
-    , ("o", "ranger") -- files
-    ]
-  ]
 
-appShortcuts baseConfig = [subtitle "Apps"] ++ mkNamedKeymap
-  baseConfig
-  [ ("M-a " ++ key, addName description $ spawn command)
-  | (key, description, command) <-
-    [("S-s", "", "/opt/tor-browser_en-US/start-tor-browser")]
-  ]
-
-monitorShortcuts baseConfig = [subtitle "Monitor output"] ++ mkNamedKeymap
-  baseConfig
-  [ ("M-M1-m " ++ key, addName description $ spawn command)
-  | (key, description, command) <-
-    [ ("n", "Only on notebook display", notebookOnly)
-    , ("a", "On all screens"          , all)
-    ]
-  ]
- where
-  externDisplayLeft = "DP-3" -- external monitor
-  externDisplayRight  = "HDMI-1" -- external monitor
-  auto              = "auto" -- turn dipslay on and select highest resolution automatically
-  off               = "off" -- turn Display off
-  --xrandrTemplate ="xrandr --output %s --%s --primary --output %s --%s --left-of %s --output %s --%s --right-of %s --mode 1440x900"
-  xrandrTemplate
-    = "xrandr --output %s --%s --primary --output %s --%s --left-of %s --output %s --%s --right-of %s"
-  xrandr (left, modeLeft, mid, modeMid, right, modeRight) =
-    printf xrandrTemplate mid modeMid left modeLeft mid right modeRight mid
-
-mediaShortcuts baseConfig = [subtitle "Media"] ++ mkNamedKeymap
-  baseConfig
-  [ (key, addName description $ spawn command)
-  | (key, description, command) <-
-    [ ("M-[" , "Emulate previous song key", "xdotool key XF86AudioPrev")
-    , ("M-]" , "Emulate next song key"    , "xdotool key XF86AudioNext")
-    , ("M-\\", "Emulate Play/Pause key"   , "xdotool key XF86AudioPlay")
-    , ( "M-u"
-      , "Settings Ubuntu"
-      , "unity-control-center"
-      )
--- Volume Control
-    , ("<XF86AudioMute>", "Mute", "pactl set-sink-mute @DEFAULT_SINK@ toggle")
-    , ( "<XF86AudioLowerVolume>"
-      , "Lower volume"
-      , "pactl set-sink-volume @DEFAULT_SINK@ -10%"
-      )
-    , ( "<XF86AudioRaiseVolume>"
-      , "Increase volume"
-      , "pactl set-sink-volume @DEFAULT_SINK@ +10%"
-      )
--- Brightness Control
---, ("<XF86MonBrightnessUp>", "Brightness up", "lux -a 10%")
---, ("<XF86MonBrightnessDown>", "Brightness up", "lux -s 10%")
-    ]
-  ]
-
-firefoxCmd :: String -> String
-firefoxCmd profileName = firefoxCmd' "Firefox" profileName
-
-firefoxCmd' :: String -> String -> String
-firefoxCmd' className profileName =
-  printf "firefox --class %s -new-instance -p \"%s\"" className profileName
-
--- Xmonad extensions
-xmonadShortcuts baseConfig = [subtitle "Xmonad extensions"] ++ mkNamedKeymap
-  baseConfig
-     , ( "M-<Space> s"
-       , addName "Single app Layout" . sendMessage $ JumpToLayout "Single"
-       )
-     , ( "M-<Space> f"
-       , addName "Fullscreen Layout" . sendMessage $ JumpToLayout "Fullscreen"
-       )
-     , ( "M-<Space> m"
-       , addName "Master Pane Layout" . sendMessage $ JumpToLayout "Master"
-       )
-     , ( "M-<Space> g"
-       , addName "Grid Layout" . sendMessage $ JumpToLayout "Grid"
-       )
-  -- Layouts
-     , ( "M-g"
-       , addName "Go to workspace by name"
-         $ workspacePrompt def (windows . lazyView)
-       )
-     ]
-  ++
-    -- Replacing greedyView with view
-     [ ("M-" ++ otherModKey ++ [key], noName . windows $ action workspaceID)
-     | (key, workspaceID) <- zip numberKeys workspaceIds
-     , (otherModKey, action) <-
-       [("", lazyView), ("C-", greedyView), ("S-", shift)]
-     ]
-  )
- where
-  numberKeys       = "123456789"
-  workspaceIds     = workspaces baseConfig
-  restartXMonadCmd = "xmonad --recompile && xmonad --restart"
-  -- Xfce specific
-  rebootCmd        = "xfce4-session-logout --reboot"
-  shutdownCmd      = "xfce4-session-logout --halt"
-  hibernateCmd     = "xfce4-session-logout --hibernate"
-  logoutCmd        = "xfce4-session-logout"
-  sessionLockCmd   = "xflock4"
 
 lazyView
   :: (Eq w, Eq sid)
