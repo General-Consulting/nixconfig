@@ -14,6 +14,7 @@ import XMonad.Layout.Magnifier
 import XMonad.Layout.ThreeColumns
 
 import XMonad.Hooks.EwmhDesktops
+import Graphics.X11.ExtraTypes.XF86
 
 
 main :: IO ()
