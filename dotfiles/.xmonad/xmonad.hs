@@ -36,7 +36,6 @@ import           XMonad.Config.Gnome            ( gnomeConfig
 import           XMonad.Config.Xfce             ( xfceConfig )
 -- helper functions for parsing keymaps
 import           XMonad.Util.EZConfig           ( mkKeymap
-                                                , additionalKeysP
                                                 , checkKeymap
                                                 , mkNamedKeymap
                                                 )
@@ -225,7 +224,6 @@ geoffShortCuts baseConfig = [subtitle "Geoff"] ++ mkNamedKeymap
    baseConfig
    [ (key, spawn' command)
    | (key, command) <-
-  `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command -lock")
     , ("M-C-s", unGrab *> spawn "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
     , ("M-g"  , spawn "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
