@@ -38,9 +38,12 @@ import           XMonad.Config.Xfce             ( xfceConfig )
 import           XMonad.Util.EZConfig           ( mkKeymap
                                                 , checkKeymap
                                                 , mkNamedKeymap
+                                                , additionalKeysP
+                                                , additionalKeys
                                                 )
 import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
+import           XMonad.Util.Ungrab
 import qualified XMonad.Util.ExtensibleState   as XS
 import           XMonad.Hooks.StatusBar.PP      (filterOutWsPP)
 import           XMonad.Hooks.StatusBar         (dynamicEasySBs, statusBarPropTo, statusBarProp, withEasySB, defToggleStrutsKey, StatusBarConfig)
@@ -67,6 +70,7 @@ import           XMonad.Hooks.SetWMName         ( setWMName ) -- workaround for 
 import           XMonad.Layout.IndependentScreens
                                                 ( countScreens )
 import           XMonad.Layout.LayoutModifier   ( ModifiedLayout )
+import           XMonad.Layout.ThreeColumns     ( ThreeCol (ThreeColMid) )
 import           XMonad.Layout.NoBorders        ( noBorders
                                                 , smartBorders
                                                 )
@@ -103,9 +107,14 @@ main = do
      . ewmhFullscreen
      . ewmh
      . dynamicEasySBs barSpawner
-     . overlayKeys
      . overlayMyBaseSettings
-     $ xfceConfig
+      `additionalKeysP`
+      [ ("M-S-z", "xscreensaver-command -lock")
+      , ("M-C-s", unGrab *> "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
+      , ("M-g"  , "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
+      , ("M-f"  , "firefox"                   )
+      , ("M-p"  , "rofi -show run")
+      ]
 
 barSpawner :: ScreenId -> IO StatusBarConfig
 barSpawner (S screen) = let n = show screen in pure $ statusBarPropTo ("_XMONAD_LOG") ("xmobar ~/.xmonad/xmobar.hs -x " ++ n) (pure myXmobarPP)
@@ -176,146 +185,38 @@ myLayouts = tiled ||| Mirror tiled ||| Full ||| threeCol
     ratio    = 1/2    -- Default proportion of screen occupied by master pane
     delta    = 3/100  -- Percent of screen to increment by when resizing panes
 
-myKeys baseConfig = concatMap
-  ($ baseConfig)
-  [ geoffShortCuts ]
--- Define additional keymappings in compact emacs-string-style:
--- M- mod/win
--- C- Ctrl
--- S- Shift
--- M1-M5 for mod1-mod5 (find out which is which with "xmodmap")
-geoffShortCuts baseConfig = [subtitle "Geoff"] ++ mkNamedKeymap
-   baseConfig
-   [ (key, spawn' command)
-   | (key, command) <-
-    [ ("M-S-z", spawn "xscreensaver-command -lock")
-    , ("M-C-s", unGrab *> spawn "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
-    , ("M-g"  , spawn "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
-    , ("M-f"  , spawn "firefox"                   )
-    , ("M-p"  , spawn "rofi -show run")
-    ]
+-- myKeys baseConfig = concatMap
+--   ($ baseConfig)
+--   [ geoffShortCuts ]
+-- -- Define additional keymappings in compact emacs-string-style:
+-- -- M- mod/win
+-- -- C- Ctrl
+-- -- S- Shift
+-- -- M1-M5 for mod1-mod5 (find out which is which with "xmodmap")
+-- geoffShortCuts baseConfig = [subtitle "Geoff"] ++ mkNamedKeymap
+--    baseConfig
+--    [ (key, spawn' command) 
+--    | (key, command) <-
+--      [ ("M-S-z", "xscreensaver-command -lock")
+--      , ("M-C-s", unGrab *> "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
+--      , ("M-g"  , "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
+--      , ("M-f"  , "firefox"                   )
+--      , ("M-p"  , "rofi -show run")
+--      ]
+--    ]
 
 
 
-lazyView
-  :: (Eq w, Eq sid)
-  => w
-  -> StackSet w lay win sid sd
-  -> StackSet w lay win sid sd
-lazyView workspaceId stackSet =
-  if isVisible workspaceId stackSet then stackSet else view workspaceId stackSet
+-- lazyView
+--   :: (Eq w, Eq sid)
+--   => w
+--   -> StackSet w lay win sid sd
+--   -> StackSet w lay win sid sd
+-- lazyView workspaceId stackSet =
+--   if isVisible workspaceId stackSet then stackSet else view workspaceId stackSet
+-- 
+-- isVisible :: Eq w => w -> StackSet w lay win sid sd -> Bool
+-- isVisible workspaceId stackSet =
+--   any ((workspaceId ==) . tag . workspace) (visible stackSet)
 
-isVisible :: Eq w => w -> StackSet w lay win sid sd -> Bool
-isVisible workspaceId stackSet =
-  any ((workspaceId ==) . tag . workspace) (visible stackSet)
 
-
-scratchpadShortcuts baseConfig = [subtitle "Scratchpads"] ++ mkNamedKeymap
-  baseConfig
-  (  [ ( "M1-b " ++ key
-       , addName scratchpadName
-         $ namedScratchpadAction myScratchPads scratchpadName
-       )
-     | (key, scratchpadName) <-
-       [ ("w", "webScratch")
-       , ( "s"
-         , "separateScratch"
-         )
--- , ("d", "devScratch")
-       , ("m", "musicScratch")
-       , ("t", "teamsScratch")
-       ]
-     ]
-  ++ [ ( "M1-" ++ key
-       , addName scratchpadName
-         $ namedScratchpadAction myScratchPads scratchpadName
-       )
-     | (key, scratchpadName) <- -- "a" doesnt work
-       [ ("w", "workScratch")
-       , ("d", "devScratch")
-       , ("p", "dbeaverScratch")
-       ]
-     ]
-  ++ [ ( "M1-a " ++ key
-       , addName scratchpadName
-         $ namedScratchpadAction myScratchPads scratchpadName
-       )
-     | (key, scratchpadName) <-
-       [ ("k", "keepassScratch")
-       -- m doesn't work
-       , ("a", "cmusScratch")
-       , ("d", "discordScratch")
-       , ("i", "ircScratch")
-       , ("n", "matrixScratch")
-       , ("l", "languageScratch")
-       , ("e", "thunderbirdScratch")
-       , ("j", "joplinScratch")
-       , ("s", "signalScratch")
-       , ("t", "todoScratch")
-       ]
-     ]
-  )
-
--- Action to run when a new window is opened.
--- Use "xprop" terminal command to find out properties of running programs.
--- resource (also known as appName) is the first element in WM_CLASS(STRING)
--- className is the second element in WM_CLASS(STRING)
--- title is WM_NAME(STRING)
-myScratchPads =
-  [ NS "keepassScratch" "keepassxc" (resource =? "keepassxc") manageWindow
-  , NS "cmusScratch"
-       ("alacritty --class cmusplayer -e cmus")
-       -- ("urxvt -name cmusplayer -e cmus")
-       (resource =? "cmusplayer")
-       manageWindow
-  , NS "musicScratch"
-       (firefoxCmd' "musicScratch" "music")
-       (className =? "musicScratch")
-       manageWindow
-  , NS "webScratch"
-       (firefoxCmd' "webScratch" "web")
-       (className =? "webScratch")
-       manageWindow
-  , NS "workScratch"
-       (firefoxCmd' "workScratch" "work")
-       (className =? "workScratch")
-       manageWindow
-  , NS "devScratch"
-       (firefoxCmd' "devScratch" "dev")
-       (className =? "devScratch")
-       manageWindow
-  , NS "dbeaverScratch" "dbeaver" (resource =? "DBeaver") manageWindow
-  , NS "terminalScratch"
-       ("alacritty --class " ++ "terminalScratch")
-       (resource =? "terminalScratch")
-       manageWindow
-  , NS "separateScratch"
-       (firefoxCmd' "separateScratch" "separate")
-       (className =? "separateScratch")
-       manageWindow
-  , NS "languageScratch"
-       (firefoxCmd' "languageScratch" "language")
-       (className =? "languageScratch")
-       manageWindow
-  , NS "thunderbirdScratch" "thunderbird" (resource =? "Mail") manageWindow
-  , NS "joplinScratch" "joplin-desktop" (resource =? "joplin") manageWindow
-  , NS "signalScratch" "signal-desktop" (resource =? "signal") manageWindow
-  , NS "ircScratch" "hexchat" (resource =? "hexchat") manageWindow
-  , NS "matrixScratch" "element-desktop" (resource =? "element") manageWindow
-  , NS "discordScratch" "discord" (resource =? "discord") manageWindow
-  , NS "teamsScratch"
-       "teams"
-       (resource =? "microsoft teams - preview")
-       manageWindow
-  , NS
-    "todoScratch"
-    "urxvt -name blogtodo -e bash -c 'vim ~/Programming/blob_of_code/doc/todo.md'"
-    (resource =? "blogtodo")
-    manageWindow
-  ]
- where
-  manageWindow = customFloating $ RationalRect l t w h
-  h            = 0.95
-  w            = 0.95
-  t            = 0.99 - h
-  l            = 0.985 - w
