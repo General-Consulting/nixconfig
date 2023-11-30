@@ -6,26 +6,29 @@
 
   home.stateVersion = "23.11"; 
 
-  home.packages = [
-    pkgs.plantuml
-    pkgs.vscode
-    pkgs.awscli2
-    pkgs.obsidian
-    pkgs.tmux
-    pkgs.tailscale
-    pkgs.kubectl
-    pkgs.synergy
-    pkgs.direnv
-    pkgs.chromium
-    pkgs.google-chrome
-    pkgs.zoom-us
-    pkgs.xclip
-    pkgs.scrot
-    pkgs.newman
-    pkgs.xorg.xev
-    pkgs.bruno
-    pkgs.nerdfonts
-    pkgs.shellcheck
+  home.packages = with pkgs; [
+    plantuml
+    vscode
+    awscli2
+    obsidian
+    tmux
+    tailscale
+    kubectl
+    synergy
+    direnv
+    chromium
+    google-chrome
+    zoom-us
+    xclip
+    scrot
+    newman
+    xorg.xev
+    bruno
+    nerdfonts
+    shellcheck
+    trayer
+    haskellPackages.xmonad
+    haskellPackages.xmobar
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

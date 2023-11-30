@@ -213,14 +213,18 @@ myLayouts =
   oneMasterWindow         = 1
   incStepSizePercent      = 10 / 100
   masterColumnSizePercent = 70 / 100
-
+myKeys baseConfig = concatMap
+  ($ baseConfig)
+  [ geoffShortCuts ]
 -- Define additional keymappings in compact emacs-string-style:
 -- M- mod/win
 -- C- Ctrl
 -- S- Shift
 -- M1-M5 for mod1-mod5 (find out which is which with "xmodmap")
-myKeys baseConfig = concatMap
-  ($ baseConfig)
+geoffShortCuts baseConfig = [subtitle "Geoff"] ++ mkNamedKeymap
+   baseConfig
+   [ (key, spawn' command)
+   | (key, command) <-
   `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command -lock")
     , ("M-C-s", unGrab *> spawn "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
