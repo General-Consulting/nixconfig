@@ -173,6 +173,8 @@
     haskellPackages.xmonad
     haskellPackages.xmobar
     neovim
+    libclang
+    cmake
   ];
 
 
