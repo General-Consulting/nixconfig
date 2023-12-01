@@ -114,6 +114,12 @@ main = do
       , ("M-f", spawn "firefox")
       , ("M-p", spawn "rofi -show run")
       ]
+      `additionalKeys`
+        [ 
+          
+          ((0, xF86XK_AudioLowerVolume         ), spawn "amixer set Master 5%-")
+        , ((0, xF86XK_AudioRaiseVolume         ), spawn "amixer set Master 5%+")
+        , ((mod4Mask .|. shiftMask, xK_m        ), spawn "echo 'Hi, mom!' | dzen2 -p 4") ]
 
 barSpawner :: ScreenId -> IO StatusBarConfig
 barSpawner (S screen) = let n = show screen in pure $ statusBarPropTo ("_XMONAD_LOG") ("xmobar ~/.xmonad/xmobar.hs -x " ++ n) (pure myXmobarPP)
