@@ -1,3 +1,6 @@
 [submodule "nixos-hardware"]
 	path = nixos-hardware
 	url = git@github.com:NixOS/nixos-hardware.git
+[submodule "dotfiles/starter"]
+	path = dotfiles/starter
+	url = https://github.com/LazyVim/starter

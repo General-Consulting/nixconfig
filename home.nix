@@ -39,8 +39,10 @@
       source = ./dotfiles/.xmonad;
       recursive = true;
     };
-    #   ".xinitrc".source = ./dotfiles/xinitrc;
-    #".config/lvim/config.lua".source = ./dotfiles/lvim.config.lua;
+   ".config/nvim/" = {
+      source = ./dotfiles/nvim;
+      recursive = true;
+    };
   };
 
   programs.rofi = {

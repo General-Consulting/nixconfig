@@ -181,8 +181,8 @@
   };
 
   programs.neovim = {
-  viAlias = true;
-  vimAlias = true;
+  viAlias = false;
+  vimAlias = false;
 };
 
   programs.noisetorch.enable = true;
