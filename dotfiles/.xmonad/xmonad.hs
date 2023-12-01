@@ -106,7 +106,7 @@ main = do
      . ewmhFullscreen
      . ewmh
      . dynamicEasySBs barSpawner
-     $ overlayMyBaseSettings defaultConfig
+     $ overlayMyBaseSettings def
       `additionalKeysP`
       [ ("M-S-z", spawn "xscreensaver-command -lock")
       , ("M-C-s", unGrab >> spawn "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f")
