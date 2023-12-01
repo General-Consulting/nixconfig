@@ -175,6 +175,8 @@
     neovim
     libclang
     cmake
+    gcc
+    zig
   ];
 
 
