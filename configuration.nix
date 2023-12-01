@@ -177,6 +177,7 @@
     gcc
     zig
     ripgrep
+    stack
   ];
 
 

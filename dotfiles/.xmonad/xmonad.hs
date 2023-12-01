@@ -109,11 +109,11 @@ main = do
      . dynamicEasySBs barSpawner
      $ overlayMyBaseSettings
       `additionalKeysP`
-      [ ("M-S-z", "xscreensaver-command -lock")
-      , ("M-C-s", unGrab *> "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
-      , ("M-g"  , "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
-      , ("M-f"  , "firefox"                   )
-      , ("M-p"  , "rofi -show run")
+      [ ("M-S-z", spawn "xscreensaver-command -lock")
+      , ("M-C-s", unGrab *> spawn "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
+      , ("M-g"  , spawn "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
+      , ("M-f"  , spawn "firefox"                   )
+      , ("M-p"  , spawn "rofi -show run")
       ]
 
 barSpawner :: ScreenId -> IO StatusBarConfig
