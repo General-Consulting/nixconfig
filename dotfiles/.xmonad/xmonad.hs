@@ -160,8 +160,8 @@ myTerminal = "alacritty"
 
 myStartupHook = do
   spawnOnce "/home/geoff/.xmonad/xmonad-start.sh"
-  spawnOnce
-    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent false --tint 0x5f5f5f &"
+--  spawnOnce
+--    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent false --tint 0x5f5f5f &"
   -- workaround for Java Swing/GUI apps not working
 
 --myStartupHook baseConfig = do
