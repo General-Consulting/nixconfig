@@ -118,8 +118,8 @@ main = do
 barSpawner :: ScreenId -> IO StatusBarConfig
 barSpawner (S screen) = let n = show screen in pure $ statusBarPropTo ("_XMONAD_LOG") ("xmobar ~/.xmonad/xmobar.hs -x " ++ n) (pure myXmobarPP)
 
-overlayKeys baseConfig =
-  addDescrKeys ((ctrlKey .|. winKey, xK_h), xMessage) myKeys baseConfig
+-- overlayKeys baseConfig =
+--   addDescrKeys ((ctrlKey .|. winKey, xK_h), xMessage) myKeys baseConfig
 
 overlayMyBaseSettings baseConfig = baseConfig
   { normalBorderColor  = myBlack
