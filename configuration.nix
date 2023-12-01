@@ -177,6 +177,7 @@
     cmake
     gcc
     zig
+    ripgrep
   ];
 
 
