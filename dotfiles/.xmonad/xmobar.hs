@@ -1,16 +1,16 @@
 Config
-{ bgColor =      "white"
-, fgColor =      "black"
-, font =         "xft:Bitstream Vera Sans Mono:size=18:bold:antialias=true:hinting=true,Font Awesome 5 Free Solid:size=18:antialias=true:hinting=true"
+{ bgColor =      "black"
+, fgColor =      "white"
+, font =         "xft:Bitstream Vera Sans Mono:size=36:bold:antialias=true:hinting=true,Font Awesome 5 Free Solid:size=36:antialias=true:hinting=true"
 --, additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
-, position = TopW L 90
+, position = TopW L 95
 -- , border =       BottomB
 -- , borderColor = "black"
 -- general behavior
 -- -- , lowerOnStart =     True    -- send to bottom of window stack on start
 -- , hideOnStart =      False   -- start with window unmapped (hidden)
 -- , allDesktops =      True    -- show on all desktops
--- , overrideRedirect = False -- run permanently as docked with XMonad
+-- , overrideRedirect= False -- run permanently as docked with XMonad
 -- -- , pickBroadest =     False   -- choose widest display (multi-monitor)
 -- -- , persistent =       True    -- enable/disable hiding (True = disabled)
  , iconRoot = "/home/mahene/.xmonad/icons/" 
