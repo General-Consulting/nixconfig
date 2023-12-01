@@ -80,16 +80,15 @@
     xrandrHeads = [
      {
        output = "HDMI-1";
-       primary = true;
      }
      {
        output = "DP-3";
+       primary = true;
      }
     ];
 
     displayManager = {
       defaultSession = "none+xmonad";
-
 
       lightdm.enable = true;
       lightdm.greeters.enso = {
@@ -196,9 +195,9 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  programs.ssh.extraConfig = ''
-    IdentityFile /home/geoff/.ssh/id_rsa_github
-  '';
+#  programs.ssh.extraConfig = ''
+#    IdentityFile /home/geoff/.ssh/id_rsa_github
+#  '';
  
   programs.zsh = {
     enable = true;

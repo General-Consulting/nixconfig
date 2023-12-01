@@ -26,7 +26,7 @@ xrandr --output $myDisplay --auto --primary
 myDP=DP-1
 xrandr | grep $myDP\ connected | ifne xrandr --output $myDP --auto --left-of $myDisplay
 #xrandr | grep $myDisplayport\ connected | ifne xrandr --output $myDisplayport --auto --right-of $myDisplay
-
+xmodmap .Xmodmap
 # Restore backgrounds, set background with run 'feh --bg-scale /path/to/images'
 #if [ -x $(command -v feh) ] ; then
 #  ~/.fehbg &
@@ -85,5 +85,3 @@ xrandr | grep $myDP\ connected | ifne xrandr --output $myDP --auto --left-of $my
 
 # Now, finally, start xmonad
 #exec xmonad
-
-
