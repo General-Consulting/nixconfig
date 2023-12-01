@@ -1,7 +1,7 @@
 Config
 { bgColor =      "white"
 , fgColor =      "black"
-, font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true:hinting=true,Font Awesome 5 Free Solid:size=10:antialias=true:hinting=true"
+, font =         "xft:Bitstream Vera Sans Mono:size=18:bold:antialias=true:hinting=true,Font Awesome 5 Free Solid:size=10:antialias=true:hinting=true"
 --, additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
 , position = TopW L 90
 -- , border =       BottomB
