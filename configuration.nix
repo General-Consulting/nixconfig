@@ -172,6 +172,7 @@
     trayer
     haskellPackages.xmonad
     haskellPackages.xmobar
+    neovim
   ];
 
 
@@ -181,8 +182,8 @@
   };
 
   programs.neovim = {
-  viAlias = false;
-  vimAlias = false;
+  viAlias = true;
+  vimAlias = true;
 };
 
   programs.noisetorch.enable = true;
