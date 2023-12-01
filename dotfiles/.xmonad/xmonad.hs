@@ -13,6 +13,7 @@ import qualified Data.Map                      as M
 import           Text.Printf                    ( printf )
 import           GHC.IO.Handle                  ( Handle )
 import           Graphics.X11.Xrandr
+import           Graphics.X11.ExtraTypes
 import           System.Directory               ( setCurrentDirectory
                                                 , getHomeDirectory
                                                 )
