@@ -161,9 +161,8 @@ myTerminal = "alacritty"
 myStartupHook = do
   spawnOnce "/home/geoff/.xmonad/xmonad-start.sh"
   spawnOnce
-    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent true --tint 0x5f5f5f &"
+    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 18 --transparent false --tint 0x5f5f5f &"
   -- workaround for Java Swing/GUI apps not working
-  setWMName "LG3D"
 
 --myStartupHook baseConfig = do
 --  checkKeymap baseConfig (fileShortcuts ++ appShortcuts ++ mediaShortcuts ++ xmonadShortcuts baseConfig)
@@ -183,46 +182,9 @@ myManageHook = composeAll
   , transience'
   ]
 
-myLayouts = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayouts = tiled ||| Mirror tiled ||| Full 
   where
-    threeCol = ThreeColMid nmaster delta ratio
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
     ratio    = 1/2    -- Default proportion of screen occupied by master pane
     delta    = 3/100  -- Percent of screen to increment by when resizing panes
-
--- myKeys baseConfig = concatMap
---   ($ baseConfig)
---   [ geoffShortCuts ]
--- -- Define additional keymappings in compact emacs-string-style:
--- -- M- mod/win
--- -- C- Ctrl
--- -- S- Shift
--- -- M1-M5 for mod1-mod5 (find out which is which with "xmodmap")
--- geoffShortCuts baseConfig = [subtitle "Geoff"] ++ mkNamedKeymap
---    baseConfig
---    [ (key, spawn' command) 
---    | (key, command) <-
---      [ ("M-S-z", "xscreensaver-command -lock")
---      , ("M-C-s", unGrab *> "scrot -s -o /dev/stdout | xclip -selection clipboard -t image/png -i $f"        )
---      , ("M-g"  , "google-chrome-stable --user-data-directory=/home/geoff/.config/google-chrome/Profile\\ 1/"                   )
---      , ("M-f"  , "firefox"                   )
---      , ("M-p"  , "rofi -show run")
---      ]
---    ]
-
-
-
--- lazyView
---   :: (Eq w, Eq sid)
---   => w
---   -> StackSet w lay win sid sd
---   -> StackSet w lay win sid sd
--- lazyView workspaceId stackSet =
---   if isVisible workspaceId stackSet then stackSet else view workspaceId stackSet
--- 
--- isVisible :: Eq w => w -> StackSet w lay win sid sd -> Bool
--- isVisible workspaceId stackSet =
---   any ((workspaceId ==) . tag . workspace) (visible stackSet)
-
-
