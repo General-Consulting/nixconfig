@@ -28,7 +28,7 @@ Config
   ]
 -- where to display command information along bar
 -- , template = "%StdinReader% }{ %mpd% | %memory% | %bright% | %default:Master% | %dynnetwork% | %wlp4s0wi% | %battery% | %mydate% |"
-, template = "%XMonadLog% }{ %dynnetwork% | %cpu% | %memory% | %bright% | %default:Master% | %battery% | %mydate% |"
+, template = "%XMonadLog% }{ %dynnetwork% | %cpu% | %memory% | %bright% | %default:Master% | %mydate% |"
 -- , template = "%XMonadLog% }{ "
 }
 
