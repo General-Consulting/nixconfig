@@ -56,8 +56,6 @@
     '';
       shellAliases = {
     ll = "ls -l";
-    vi = "lvim";
-    vim = "lvim";
   };
   };
 
