@@ -178,6 +178,7 @@
     zig
     ripgrep
     stack
+    obs-studio
   ];
 
 
