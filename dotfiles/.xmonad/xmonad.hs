@@ -124,7 +124,7 @@ barSpawner (S screen) = let n = show screen in pure $ statusBarPropTo ("_XMONAD_
 overlayMyBaseSettings baseConfig = baseConfig
   { normalBorderColor  = myBlack
   , focusedBorderColor = myBlue
-  , focusFollowsMouse  = true
+  , focusFollowsMouse  = True
   , layoutHook         = myLayouts
         -- Action to run when a new window is opened, <+> compoeses right to left
   , manageHook         = manageHook baseConfig <+> myManageHook
