@@ -179,6 +179,7 @@
     obs-studio
     networkmanagerapplet
     helix
+    feh
   ];
 
 
