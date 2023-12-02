@@ -1,0 +1,127 @@
+theme = "tokyonight"
+
+[editor]
+line-number = "relative"
+mouse = false
+auto-format = true
+bufferline = "multiple"
+color-modes = true
+
+[editor.lsp]
+auto-signature-help = false
+display-messages = true
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+
+[editor.file-picker]
+hidden = false
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25         # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""   # set wrap-indicator to "" to hide it
+
+
+[editor.indent-guides]
+render = true
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[keys.insert]
+C-space = "signature_help"
+
+[keys.select]
+X = ["extend_line_up", "extend_to_line_bounds"]
+C-j = [
+  'ensure_selections_forward',
+  'extend_to_line_bounds',
+  'extend_char_right',
+  'extend_char_left',
+  'delete_selection','add_newline_below',
+  'move_line_down',
+  'replace_with_yanked',
+]
+C-k = [
+  'ensure_selections_forward',
+  'extend_to_line_bounds',
+  'extend_char_right',
+  'extend_char_left',
+  'delete_selection',
+  'move_line_up',
+  'add_newline_above',
+  'move_line_up',
+  'replace_with_yanked',
+]
+
+[keys.normal]
+C-q = ":quit"
+tab = ":buffer-next"
+S-tab = ":buffer-previous"
+X = ["extend_line_up", "extend_to_line_bounds"]
+#like c-d in vscode
+"C-n" = ["move_prev_word_start", "move_next_word_end", "search_selection", "extend_search_next"]
+
+
+[keys.normal.space]
+i = ":toggle lsp.display-inlay-hints"
+F = "file_picker_in_current_directory"
+q = ":q"
+x = ":bc"
+"," = ":w"
+"!" = ":q!"
+o = ":reload-all"
+
+# Tmux 
+[keys.normal.'space'.'space']
+# Interactive search in current working directory
+l = ":pipe-to helix-tmux search --current"
+# Interactive search in current working directory (include path name in the search)
+L = ":pipe-to helix-tmux search --current-inc-path"
+# Interactive search in current git directory
+w = ":pipe-to helix-tmux search --workspace"
+# Interactive search in current git directory (include path name in the search)
+W = ":pipe-to helix-tmux search --workspace-inc-path"
+# Interactive search in current buffer
+B = ":pipe-to helix-tmux search --buffer"
+# Git status
+b = ":pipe-to helix-tmux git --blame"
+# Git browse github repo using default browser
+H = ":pipe-to helix-tmux git --browse"
+# Files tree
+t = ":pipe-to helix-tmux tree"
+# lazygit
+g = ":pipe-to helix-tmux git --lazygit"
+
+# # Zelllij
+# [keys.normal.'space'.'space']
+# ## Interactive search in current working directory
+# l = ":pipe-to helix-zellij search --current"
+# ## Interactive search in current working directory (include path name in the search)
+# L = ":pipe-to helix-zellij search --current-inc-path"
+# ## Interactive search in current git directory
+# w = ":pipe-to helix-zellij search --workspace"
+# ## Interactive search in current git directory (include path name in the search)
+# W = ":pipe-to helix-zellij search --workspace-inc-path"
+# ## Interactive search in current buffer
+# B = ":pipe-to helix-zellij search --buffer"
+# ## Git status
+# s = ":pipe-to helix-zellij git --status"
+# ## Git blame
+# b = ":pipe-to helix-zellij git --blame"
+# ## Git browse github repo using default browser
+# H = ":pipe-to helix-zellij git --browse"
+# ## lazygit
+# g = ":pipe-to helix-zellij git --lazygit"
+# ## Diff current buffer with content on disk
+# d = ":pipe-to helix-zellij diff"

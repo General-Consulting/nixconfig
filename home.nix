@@ -44,6 +44,10 @@
       source = ./dotfiles/nvim;
       recursive = true;
     };
+   ".config/helix/" = {
+      source = ./dotfiles/helix;
+      recursive = true;
+    };
   };
 
   programs.rofi = {
