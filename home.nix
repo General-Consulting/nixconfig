@@ -35,7 +35,7 @@
     feh
     picom
     stalonetray
-    xmodmap
+    xorg.xmodmap
   ];
 
   home.file = {
