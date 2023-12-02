@@ -30,7 +30,7 @@ xmodmap .Xmodmap
 # Restore backgrounds, set background with run 'feh --bg-scale /path/to/images'
 #if [ -x $(command -v feh) ] ; then
 
-feh --bg-scale --randomize ~/wallpapers/ &
+feh --bg-scale ~/wallpapers/river-mountain.jpg &
 picom -f &
 touch ~/yourmomwaswhere
 # Line by line, the options used by default below mean:
