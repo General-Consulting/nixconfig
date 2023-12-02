@@ -47,6 +47,7 @@ import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Ungrab
 import qualified XMonad.Util.ExtensibleState   as XS
+import           XMonad.Hooks.FadeWindows
 import           XMonad.Hooks.StatusBar.PP      (filterOutWsPP)
 import           XMonad.Hooks.StatusBar         (dynamicEasySBs, statusBarPropTo, statusBarProp, withEasySB, defToggleStrutsKey, StatusBarConfig)
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
@@ -140,8 +141,13 @@ overlayMyBaseSettings baseConfig = baseConfig
   , terminal           = myTerminal
   , borderWidth        = 3
   , startupHook        = startupHook baseConfig <+> myStartupHook
+  , logHook            = fadeWindowsLogHook myFadeHook
+  , handleEventHook i  = fadeWindowsEventHook
   }
 
+myFadeHook = composeAll [                 opaque
+                        , isUnfocused --> transparency 0.2
+                        ]
 -- Define how xmonad-workspace-status is displayed.
 -- Every bar has a textarea for displaying that.
 myXmobarPP = filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP

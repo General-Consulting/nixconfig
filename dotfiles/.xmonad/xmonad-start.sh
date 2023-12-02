@@ -23,13 +23,14 @@ xrandr --output $myDisplay --auto --primary
 
 # If we find that a screen is connected, activate it and position it
 # to the right of the primary screen.
-myDP=DP-1
+myDP=DP-3
 xrandr | grep $myDP\ connected | ifne xrandr --output $myDP --auto --left-of $myDisplay
 #xrandr | grep $myDisplayport\ connected | ifne xrandr --output $myDisplayport --auto --right-of $myDisplay
 xmodmap .Xmodmap
 # Restore backgrounds, set background with run 'feh --bg-scale /path/to/images'
 #if [ -x $(command -v feh) ] ; then
-#  ~/.fehbg &
+
+feh --bg-scale ~/wallpapers/ &
 #fi
 
 # Line by line, the options used by default below mean:
@@ -46,19 +47,19 @@ xmodmap .Xmodmap
 # - window-strut "none" means windows are allowed to cover the tray. In
 #   other words, trust xmonad to handle this part.
 #
-# if [ -x $(command -v stalonetray) ] ; then
-#   touch ~/.stalonetrayrc # workaround: Stalonetray shows warning
-#   stalonetray \
-#     --icon-gravity E \
-#     --geometry 7x1-0+0 \
-#     --max-geometry 7x1-0+0 \
-#     --background '#ffffff' \
-#     --skip-taskbar \
-#     --icon-size 12 \
-#     --kludges force_icons_size \
-#     --window-strut none \
-#   &
-# fi
+if [ -x $(command -v stalonetray) ]; then
+	touch ~/.stalonetrayrc # workaround: Stalonetray shows warning
+	stalonetray \
+		--icon-gravity E \
+		--geometry 7x1-0+0 \
+		--max-geometry 7x1-0+0 \
+		--background '#ffffff' \
+		--skip-taskbar \
+		--icon-size 12 \
+		--kludges force_icons_size \
+		--window-strut none \
+		&
+fi
 
 # Run the gnome-keyring-daemon to avoid issues you otherwise may encounter
 # when using gnome applications which expect access to the keyring, such
