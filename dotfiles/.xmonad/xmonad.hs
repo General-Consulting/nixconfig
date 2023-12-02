@@ -142,7 +142,7 @@ overlayMyBaseSettings baseConfig = baseConfig
   , borderWidth        = 3
   , startupHook        = startupHook baseConfig <+> myStartupHook
   , logHook            = fadeWindowsLogHook myFadeHook
-  , handleEventHook    = fadeWindowsEventHook myFadeHook
+  , handleEventHook    = fadeWindowsEventHook
   }
 
 myFadeHook = composeAll [                 transparency 0.15
