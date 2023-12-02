@@ -160,8 +160,8 @@ myTerminal = "alacritty"
 
 myStartupHook = do
   spawnOnce "/home/geoff/.xmonad/xmonad-start.sh"
-  spawnOnce "alacritty -T nixconfig --class nixconfig,alacritty -e nvim ./nixconfig"
-  spawnOnce "alacritty -T currentProj --class currentProj,alacritty -e nvim ~/clientwork/thriv/baseline/"
+  spawnOnce "alacritty -T nixconfig --class nixconfig,alacritty -e 'sh -c cd nixconfig && nvim .'"
+  spawnOnce "alacritty -T currentProj --class currentProj,alacritty -e 'sh -c cd clientwork/thriv/baseline && nvim .'"
   spawnOnce "obsidian"
   spawnOnce "google-chrome-stable"
 --  spawnOnce
