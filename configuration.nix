@@ -180,6 +180,7 @@
     networkmanagerapplet
     helix
     feh
+    picom
   ];
 
 
