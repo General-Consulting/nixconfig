@@ -178,7 +178,7 @@ myManageHook = composeAll
   -- , title =? "Microsoft Teams"  --> doIgnore
   -- , resource =? "microsoft teams - preview"  --> doIgnore
   , isDialog --> doCenterFloat
-  , className =? "google-chrome" --> doShift "3"
+  , className =? "Google-chrome" --> doShift "1"
   -- move transient windows like dialogs/alerts on top of their parents
   , transience'
   ]
