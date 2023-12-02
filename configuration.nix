@@ -179,6 +179,7 @@
     ripgrep
     stack
     obs-studio
+    networkmanagerapplet
   ];
 
 
