@@ -47,7 +47,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  i18n.consoleFont = "latarcyrheb-sun32";
+  consoleFont = "latarcyrheb-sun32";
 
   fonts.packages = with pkgs; [
   noto-fonts

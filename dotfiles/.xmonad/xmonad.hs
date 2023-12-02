@@ -160,7 +160,10 @@ myTerminal = "alacritty"
 
 myStartupHook = do
   spawnOnce "/home/geoff/.xmonad/xmonad-start.sh"
-  spawnOnce "alacritty -e nvim ./nixconfig"
+  spawnOnce "alacritty -T nixconfig --class alacritty,nixconfig -e nvim ./nixconfig"
+  spawnOnce "alacritty -T currentProj --class alacritty,currentProj -e nvim ~/clientwork/thriv/baseline/"
+  spawnOnce "obsidian"
+  spawnOnce "google-chrome-stable"
 --  spawnOnce
 --    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 18 --transparent true --tint 0x5f5f5f &"
   -- workaround for Java Swing/GUI apps not working
@@ -180,6 +183,8 @@ myManageHook = composeAll
   -- , resource =? "microsoft teams - preview"  --> doIgnore
   , isDialog --> doCenterFloat
   , className =? "Google-chrome" --> doShift "1"
+  , className =? "currentProj" --> doShift "3"
+  , className =? "nixconfig" --> doShift "4"
   , className =? "obsidian" --> doShift "8"
   -- move transient windows like dialogs/alerts on top of their parents
   , transience'
