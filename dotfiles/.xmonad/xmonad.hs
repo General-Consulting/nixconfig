@@ -145,7 +145,7 @@ overlayMyBaseSettings baseConfig = baseConfig
   , handleEventHook    = fadeWindowsEventHook
   }
 
-myFadeHook = composeAll [                 opaque
+myFadeHook = composeAll [                 transparency 0.8
                         , isUnfocused --> transparency 0.2
                         ]
 -- Define how xmonad-workspace-status is displayed.
