@@ -33,7 +33,7 @@ xmodmap .Xmodmap
 feh --bg-scale ~/wallpapers/ &
 picom -f &
 #fi
-
+touch ~/yourmomwaswhere
 # Line by line, the options used by default below mean:
 # - icons should be aligned with the "East" or right side of the tray
 # - the width of the tray should be 5 icons wide by one icon tall, and it

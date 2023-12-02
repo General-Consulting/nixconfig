@@ -1,29 +1,32 @@
 # Avoid blue screen light at night
 # if [ -z "$(pgrep fluxgui)" ] ; then
-if [ -x "$(command -v fluxgui)" ] ; then
-  fluxgui &
+if [ -x "$(command -v fluxgui)" ]; then
+	fluxgui &
 fi
 
 # if [ -z "$(pgrep dropbox)" ] ; then
 #if [ -x "$(command -v dropbox)" ] ; then
-  #dropbox start &
+#dropbox start &
 #fi
 
-if [ -x "$(command -v nextcloud)" ] ; then
-  nextcloud &
+if [ -x "$(command -v nextcloud)" ]; then
+	nextcloud &
 fi
 
 # Network manager GUI
 # if [ -z "$(pgrep nm-applet)" ] ; then
-if [ -x "$(command -v nm-applet)" ] ; then
-  # nm-applet --sm-disable &
-  nm-applet &
+if [ -x "$(command -v nm-applet)" ]; then
+	# nm-applet --sm-disable &
+	nm-applet &
 fi
 
 # if [ -z "$(pgrep system-config-printer-applet)" ] ; then
-if [ -x "$(command -v system-config-printer-applet)" ] ; then
-  system-config-printer-applet &
+if [ -x "$(command -v system-config-printer-applet)" ]; then
+	system-config-printer-applet &
 fi
+
+feh --bg-scale ~/wallpapers/ &
+picom -f &
 
 # On login, we unlock the ssh keychain so we're not prompted for
 # passphrases later. We pipe /dev/null to ssh-add to make it realize
@@ -53,3 +56,5 @@ fi
 # device
 # TOUCHPAD_ID=`xinput | grep 'Synaptics TouchPad' | cut -f 2 | cut -f 2 -d =`
 # xinput set-prop $TOUCHPAD_ID "Device Enabled" 0
+
+touch ~/shewasalsohere

@@ -32,6 +32,8 @@
     neovim
     fzf
     lazygit
+    feh
+    picom
   ];
 
   home.file = {
