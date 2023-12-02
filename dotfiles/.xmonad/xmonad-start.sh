@@ -30,9 +30,8 @@ xmodmap .Xmodmap
 # Restore backgrounds, set background with run 'feh --bg-scale /path/to/images'
 #if [ -x $(command -v feh) ] ; then
 
-feh --bg-scale ~/wallpapers/ &
+feh --bg-scale --randomize ~/wallpapers/ &
 picom -f &
-#fi
 touch ~/yourmomwaswhere
 # Line by line, the options used by default below mean:
 # - icons should be aligned with the "East" or right side of the tray
