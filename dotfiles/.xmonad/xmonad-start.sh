@@ -31,6 +31,7 @@ xmodmap .Xmodmap
 #if [ -x $(command -v feh) ] ; then
 
 feh --bg-scale ~/wallpapers/ &
+picom -f &
 #fi
 
 # Line by line, the options used by default below mean:
