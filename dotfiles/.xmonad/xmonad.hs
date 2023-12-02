@@ -191,7 +191,7 @@ myManageHook = composeAll
   , transience'
   ]
 
-myLayouts = spacing 8 $ tiled ||| Mirror tiled ||| Full 
+myLayouts = spacing 16 $ tiled ||| Mirror tiled ||| Full 
   where
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
