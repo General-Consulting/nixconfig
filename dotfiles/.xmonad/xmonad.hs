@@ -19,6 +19,7 @@ import           System.Directory               ( setCurrentDirectory
                                                 )
 
 import           XMonad                  hiding ( (|||) )
+import           XMonad.Layout.Spacing
 import           XMonad.Layout.LayoutCombinators
                                                 ( (|||)
                                                 , JumpToLayout(..)
@@ -190,7 +191,7 @@ myManageHook = composeAll
   , transience'
   ]
 
-myLayouts = tiled ||| Mirror tiled ||| Full 
+myLayouts = spacing 8 $ tiled ||| Mirror tiled ||| Full 
   where
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
