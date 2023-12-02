@@ -31,4 +31,4 @@ Not Working:
     - this is actually just untested / unsetup.  i suspect it will work fine.
  
 
-![image](https://github.com/General-Consulting/nixconfig/assets/143022822/b7794c18-51cf-4a65-b235-918d4b97eb4b)
+![image](https://github.com/General-Consulting/nixconfig/assets/143022822/21d3e4c6-88e4-4436-8b43-f54d96a27893)
