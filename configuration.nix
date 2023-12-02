@@ -47,8 +47,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  consoleFont = "latarcyrheb-sun32";
-
   fonts.packages = with pkgs; [
   noto-fonts
   noto-fonts-cjk
@@ -180,6 +178,7 @@
     stack
     obs-studio
     networkmanagerapplet
+    helix
   ];
 
 
