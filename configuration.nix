@@ -177,6 +177,8 @@
     helix
     feh
     moreutils
+    stalonetray
+    xorg.xmodmap
   ];
 
 
