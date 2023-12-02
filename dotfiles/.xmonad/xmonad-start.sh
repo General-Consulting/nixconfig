@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo "very top"
 
 # Load X resources (fixes some font issues)
 # xrdb -merge .Xresources
@@ -17,22 +18,26 @@
 # Note that you can run xrandr at the command line to get a list of your
 # connected screens and find out what names you should use to refer to them.
 
-myDisplay=HDMI-1
 # Activate primary screen
-xrandr --output $myDisplay --auto --primary
+myHDMI=HDMI-1
+myDP=DP-3
+xrandr --output $myHDMI --auto --primary
 
+echo "after first xrandr"
 # If we find that a screen is connected, activate it and position it
 # to the right of the primary screen.
-myDP=DP-3
 xrandr | grep $myDP\ connected | ifne xrandr --output $myDP --auto --left-of $myDisplay
+echo "after second xrandr"
 #xrandr | grep $myDisplayport\ connected | ifne xrandr --output $myDisplayport --auto --right-of $myDisplay
 xmodmap .Xmodmap
+echo "after xmodmap"
 # Restore backgrounds, set background with run 'feh --bg-scale /path/to/images'
 #if [ -x $(command -v feh) ] ; then
 
 feh --bg-scale ~/wallpapers/river-mountain.jpg &
+echo "after feh"
 picom -f &
-touch ~/yourmomwaswhere
+echo "after picom"
 # Line by line, the options used by default below mean:
 # - icons should be aligned with the "East" or right side of the tray
 # - the width of the tray should be 5 icons wide by one icon tall, and it
