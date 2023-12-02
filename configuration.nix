@@ -132,10 +132,6 @@
     isNormalUser = true;
     description = "geoff";
     extraGroups = [ "networkmanager" "wheel" "docker"];
-    packages = with pkgs; [
-      home-manager
-      xorg.xmodmap
-    ];
     shell = pkgs.zsh;
   };
 
@@ -180,6 +176,7 @@
     networkmanagerapplet
     helix
     feh
+    moreutils
   ];
 
 

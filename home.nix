@@ -34,6 +34,7 @@
     lazygit
     feh
     picom
+    stalonetray
   ];
 
   home.file = {
