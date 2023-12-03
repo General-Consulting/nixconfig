@@ -10,6 +10,7 @@
   imports =
     [ # Include the results of the hardware scan.
      <home-manager/nixos>
+     ./home-manager
      ./hardware-configuration.nix
      ./nixos-hardware/common/cpu/amd
      ./nixos-hardware/common/gpu/amd
@@ -136,11 +137,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  home-manager.extraSpecialArgs = {
-    inherit pkgs;
-    inherit lib;
-  };
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [

@@ -146,7 +146,7 @@ overlayMyBaseSettings baseConfig = baseConfig
   }
 
 myFadeHook = composeAll [                 transparency 0.05
-                        , isUnfocused --> transparency 0.5
+                        , isUnfocused --> transparency 0.2
                         ]
 -- Define how xmonad-workspace-status is displayed.
 -- Every bar has a textarea for displaying that.
