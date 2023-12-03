@@ -21,7 +21,7 @@ return {
 
   {
     'mfussenegger/nvim-dap'
-  }
+  },
   -- override nvim-cmp and add cmp-emoji
   {
     "hrsh7th/nvim-cmp",
