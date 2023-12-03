@@ -36,6 +36,7 @@
     picom
     stalonetray
     xorg.xmodmap
+    vimb
   ];
 
   home.file = {
