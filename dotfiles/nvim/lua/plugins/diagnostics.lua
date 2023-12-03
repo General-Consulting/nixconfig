@@ -21,10 +21,6 @@ return {
 
   {
     'mfussenegger/nvim-dap'
-  },
-
-  {
-    'rcarriga/nvim-dap-ui',
       config = function()
         require("dap").configurations['typescript'] = {
           {
@@ -38,6 +34,10 @@ return {
           }
         }
       end
+  },
+
+  {
+    'rcarriga/nvim-dap-ui',
 	
   },
   -- override nvim-cmp and add cmp-emoji
