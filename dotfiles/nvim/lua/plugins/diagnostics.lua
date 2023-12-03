@@ -24,7 +24,21 @@ return {
   },
 
   {
-    'rcarriga/nvim-dap-ui'
+    'rcarriga/nvim-dap-ui',
+      config = function()
+        require("dap").configurations['typescript'] = {
+          {
+            type= "node",
+            request= "attach",
+            name= "Attach to Web",
+            port= 4324,
+            localRoot= "${workspaceRoot}",
+            sourceMapPathOverrides = { },
+            remoteRoot= "/usr/src/web/",
+          }
+        }
+      end
+	
   },
   -- override nvim-cmp and add cmp-emoji
   {
