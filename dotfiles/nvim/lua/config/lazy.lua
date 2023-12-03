@@ -13,7 +13,7 @@ require("lazy").setup({
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.typescript" },
 
-    { 'mfussenegger/nvim-dap' },
+    { 'mfussenegger/nvim-dap', opts={} },
     {
       "pmizio/typescript-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
