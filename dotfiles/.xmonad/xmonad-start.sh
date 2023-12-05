@@ -26,7 +26,7 @@ xrandr --output $myHDMI --auto --primary
 echo "after first xrandr"
 # If we find that a screen is connected, activate it and position it
 # to the right of the primary screen.
-xrandr | grep $myDP\ connected | ifne xrandr --output $myDP --auto --left-of $myDisplay
+xrandr | grep $myDP\ connected | ifne xrandr --output $myDP --auto --right-of $myDisplay
 echo "after second xrandr"
 #xrandr | grep $myDisplayport\ connected | ifne xrandr --output $myDisplayport --auto --right-of $myDisplay
 xmodmap .Xmodmap
