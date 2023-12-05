@@ -53,6 +53,7 @@
       source = ./dotfiles/helix;
       recursive = true;
     };
+   "monitors.sh".source = ./dotfiles/monitors.sh;
   };
 
   programs.rofi = {
