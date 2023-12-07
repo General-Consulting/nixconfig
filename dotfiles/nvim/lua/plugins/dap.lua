@@ -49,12 +49,12 @@ return {
       }
     end
     for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+      if not dap.configurations[language] then
         dap.configurations[language] = {
           {
             type = "pwa-node",
             request = "launch",
             name = "Launch file",
-            port = 4322,
             program = "${file}",
             cwd = "${workspaceFolder}",
           },
@@ -62,19 +62,19 @@ return {
             type = "pwa-node",
             request = "attach",
             name = "Attach",
-            port = 4322,
             processId = require("dap.utils").pick_process,
             cwd = "${workspaceFolder}",
           },
           {
             name = "Attach to API",
-            type = "pwa",
+            type = "pwa-node",
             request = "attach",
             port = 4322,
             localRoot= "${workspaceRoot}",
             remoteRoot= "/usr/src/app/",
           }
         }
+      end
     end
   end,
 },
