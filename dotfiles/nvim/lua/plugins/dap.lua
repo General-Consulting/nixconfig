@@ -51,6 +51,20 @@ return {
     for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
         dap.configurations[language] = {
           {
+            type = "chrome",
+            request= "launch",
+            url = "http://localhost:4443"
+            name = "attach to chrome debugger on 4443"
+
+          },
+          {
+            type = "node-terminal",
+            request= "launch",
+            command = "npm run dev"
+            name = "attach to 'npm run dev'"
+
+          },
+          {
             type = "pwa-node",
             request = "launch",
             name = "Launch file",
