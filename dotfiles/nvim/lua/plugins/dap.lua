@@ -41,7 +41,7 @@ return {
         dap.configurations.typescript = {
           {
             name = "Attach to API",
-            type = "typescriipt",
+            type = "node2",
             request = "attach",
             port = 4322,
             localRoot= "${workspaceRoot}",
