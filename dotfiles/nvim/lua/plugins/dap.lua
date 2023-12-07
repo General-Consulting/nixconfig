@@ -53,14 +53,13 @@ return {
           {
             type = "chrome",
             request= "launch",
-            url = "http://localhost:4443"
+            url = "http://localhost:4443",
             name = "attach to chrome debugger on 4443"
-
           },
           {
             type = "node-terminal",
             request= "launch",
-            command = "npm run dev"
+            command = "npm run dev",
             name = "attach to 'npm run dev'"
 
           },
