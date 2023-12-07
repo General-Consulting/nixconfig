@@ -49,7 +49,6 @@ return {
       }
     end
     for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
-      if not dap.configurations[language] then
         dap.configurations[language] = {
           {
             type = "pwa-node",
@@ -75,7 +74,6 @@ return {
           }
         }
       end
-    end
   end,
 },
 
