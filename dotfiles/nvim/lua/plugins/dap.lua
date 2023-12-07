@@ -55,7 +55,8 @@ return {
             request= "launch",
             url = "http://localhost:4443",
             name = "attach to chrome debugger on 4443",
-            runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable --remote-debugging-port=9222"
+            runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable",
+            args = " --remote-debugging-port=9222"
           },
           {
             type = "pwa-node",
