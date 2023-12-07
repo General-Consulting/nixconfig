@@ -1,54 +1,62 @@
 return {
+{
   "mfussenegger/nvim-dap",
+  optional = true,
   dependencies = {
     {
-      "jbyuki/one-small-step-for-vimkind",
-      -- stylua: ignore
-      config = function()
-        local dap = require("dap")
-        dap.adapters.nlua = function(callback, conf)
-          local adapter = {
-            type = "server",
-            host = conf.host or "127.0.0.1",
-            port = conf.port or 8086,
-          }
-          if conf.start_neovim then
-            local dap_run = dap.run
-            dap.run = function(c)
-              adapter.port = c.port
-              adapter.host = c.host
-            end
-            require("osv").run_this()
-            dap.run = dap_run
-          end
-          callback(adapter)
-        end
-        dap.configurations.lua = {
+      "williamboman/mason.nvim",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "js-debug-adapter")
+      end,
+    },
+  },
+  opts = function()
+    local dap = require("dap")
+    if not dap.adapters["pwa-node"] then
+      require("dap").adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          -- 💀 Make sure to update this path to point to your installation
+          args = {
+            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+              .. "/js-debug/src/dapDebugServer.js",
+            "${port}",
+          },
+        },
+      }
+    end
+    for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+      if not dap.configurations[language] then
+        dap.configurations[language] = {
           {
-            type = "nlua",
-            request = "attach",
-            name = "Run this file",
-            start_neovim = {},
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
           },
           {
-            type = "nlua",
+            type = "pwa-node",
             request = "attach",
-            name = "Attach to running Neovim instance (port = 8086)",
-            port = 8086,
+            name = "Attach",
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
           },
-        }
-
-        dap.configurations.typescript = {
           {
             name = "Attach to API",
-            type = "node2",
+            type = "pwa",
             request = "attach",
             port = 4322,
             localRoot= "${workspaceRoot}",
             remoteRoot= "/usr/src/app/",
           }
         }
-      end,
-    },
-  },
+      end
+    end
+  end,
+}
 }
