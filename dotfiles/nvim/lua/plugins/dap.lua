@@ -55,10 +55,10 @@ return {
             request= "launch",
             url = "http://localhost:4443",
             name = "attach to chrome debugger on 4443",
-            runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable"
+            runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable --remote-debugging-port=9222"
           },
           {
-            type = "node-terminal",
+            type = "pwa-node",
             request= "launch",
             command = "npm run dev",
             name = "attach to 'npm run dev'"
