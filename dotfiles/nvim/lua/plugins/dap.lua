@@ -87,8 +87,8 @@ return {
             type = "pwa-node",
             request = "attach",
             port = 4322,
-            remoteRoot = '/usr/src/app'
-            cwd=vim.fn.getcwd(),
+            remoteRoot = '/usr/src/app',
+            cwd=vim.fn.getcwd()
           }
         }
       end
