@@ -56,7 +56,8 @@ return {
             url = "http://localhost:4443",
             name = "attach to chrome debugger on 4443",
             runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable",
-            cwd = "${workspaceFolder}",
+            webRoot = '${workspaceFolder}',
+
           },
           {
             type = "pwa-node",
@@ -84,8 +85,7 @@ return {
             type = "pwa-node",
             request = "attach",
             port = 4322,
-            localRoot= "${workspaceRoot}",
-            remoteRoot= "/usr/src/app/",
+            cwd=vim.fn.getcwd(),
           }
         }
       end
