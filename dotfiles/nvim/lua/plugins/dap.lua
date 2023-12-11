@@ -80,12 +80,14 @@ return {
             port = 4322,
             processId = require("dap.utils").pick_process,
             cwd = "${workspaceFolder}",
+            remoteRoot = '/usr/src/app'
           },
           {
             name = "Attach to API",
             type = "pwa-node",
             request = "attach",
             port = 4322,
+            remoteRoot = '/usr/src/app'
             cwd=vim.fn.getcwd(),
           }
         }
