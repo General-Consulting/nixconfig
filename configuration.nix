@@ -10,7 +10,7 @@
   imports =
     [ # Include the results of the hardware scan.
      <home-manager/nixos>
-     ./home-manager
+#     ./home-manager
      ./hardware-configuration.nix
      ./nixos-hardware/common/cpu/amd
      ./nixos-hardware/common/gpu/amd
@@ -134,6 +134,9 @@
     description = "geoff";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
+    packages = with pkgs; [
+    home-manager
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -227,6 +230,14 @@
   networking.extraHosts = 
 	'' 
 		192.168.0.107 nixos
+		127.0.0.1 tunnel
+		127.0.0.1 hasura
+		127.0.0.1 backend
+		127.0.0.1 api
+		127.0.0.1 web
+		127.0.0.1 oathkeeper
+		
+		
 	'';
 
 }
