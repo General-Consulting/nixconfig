@@ -63,8 +63,7 @@ return {
             type = "pwa-node",
             request= "launch",
             command = "npm run dev",
-            name = "'npm run dev'"
-
+            name = "npm run dev"
           },
           {
             type = "pwa-node",

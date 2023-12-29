@@ -37,6 +37,9 @@
     stalonetray
     xorg.xmodmap
     vimb
+    pavucontrol
+    shotcut
+    gnucash
   ];
 
   home.file = {
