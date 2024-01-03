@@ -40,6 +40,7 @@
     pavucontrol
     shotcut
     gnucash
+    manim
   ];
 
   home.file = {
