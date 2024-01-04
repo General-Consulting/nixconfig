@@ -140,7 +140,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-
+  nixpkgs.overlays = [
+    (self: super: {
+      poetry2nix = super.poetry2nix;
+    })
+  ];
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -177,7 +181,8 @@
     helix
     feh
     moreutils
-    (python3.withPackages(ps: with ps; [ (import ./manim.nix { inherit pkgs; }) requests ]))
+    python3
+    poetry
     stalonetray
     xorg.xmodmap
   ];

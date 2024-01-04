@@ -1,17 +1,14 @@
 { pkgs ? import <nixpkgs> {}, pythonPackages ? pkgs.python3Packages }:
 
-pythonPackages.buildPythonPackage rec {
+let
+  poetry2nix = pkgs.poetry2nix.override { python = pythonPackages.python; };
+in
+poetry2nix.mkPoetryApplication rec {
   pname = "manim";
-  version = "0.18.0";  # Replace with the correct version
+  version = "0.18.0";  # Replace with the correct Manim version
 
   src = pythonPackages.fetchPypi {
     inherit pname version;
-    sha256 = "sha256-VniAZrwa7CRxqYjJHjNxlP040QNe0bTRCDi/5kvSavg=";  # Replace with the correct hash
+    sha256 = "sha256-VniAZrwa7CRxqYjJHjNxlP040QNe0bTRCDi/5kvSavg=";
   };
-
-  doCheck = false;
-
-  propagatedBuildInputs = [ pythonPackages.numpy ];  # Add necessary dependencies
-
-  # Additional configuration if needed
 }
