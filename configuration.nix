@@ -183,6 +183,8 @@
     moreutils
     python3
     poetry
+    cairo
+    pango
     stalonetray
     xorg.xmodmap
   ];
