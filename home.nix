@@ -40,6 +40,7 @@
     pavucontrol
     shotcut
     gnucash
+    mplayer
     manim
     gopls
     pyright
