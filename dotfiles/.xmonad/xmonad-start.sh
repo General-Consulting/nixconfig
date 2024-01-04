@@ -20,7 +20,7 @@ echo "very top"
 
 # Activate primary screen
 myHDMI=HDMI-1
-myDP=DP-3
+myDP=DP-1
 xrandr --output $myHDMI --auto --primary
 
 echo "after first xrandr"
