@@ -6,7 +6,7 @@ pythonPackages.buildPythonPackage rec {
 
   src = pythonPackages.fetchPypi {
     inherit pname version;
-    sha256 = "sha256-0000000000000000000000000000000000000000000=";  # Replace with the correct hash
+    sha256 = "sha256-VniAZrwa7CRxqYjJHjNxlP040QNe0bTRCDi/5kvSavg=";  # Replace with the correct hash
   };
 
   doCheck = false;
