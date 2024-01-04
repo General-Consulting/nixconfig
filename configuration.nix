@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 {
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -22,7 +21,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelParams = [
-  "video=DP-3:3840x2160@60"
+  "video=DP-1:3840x2160@60"
   "video=HDMI-A-1:3840x2160@60"
   ];
 
@@ -141,6 +140,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+
+
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     appeditor
@@ -176,6 +177,7 @@
     helix
     feh
     moreutils
+    (python3.withPackages(ps: with ps; [ (import ./manim.nix { inherit pkgs; }) requests ]))
     stalonetray
     xorg.xmodmap
   ];
