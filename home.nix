@@ -41,6 +41,8 @@
     shotcut
     gnucash
     manim
+    gopls
+    pyright
   ];
 
   home.file = {
