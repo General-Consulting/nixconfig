@@ -42,6 +42,7 @@
     gnucash
     mplayer
     manim
+    firefox
     gopls
     pyright
   ];
