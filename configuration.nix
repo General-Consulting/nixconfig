@@ -182,6 +182,7 @@
     feh
     moreutils
     (python3.withPackages (p: (with p; [
+      pyright
       python-lsp-server
       python-lsp-ruff
     ])))
