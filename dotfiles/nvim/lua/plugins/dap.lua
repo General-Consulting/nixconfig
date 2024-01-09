@@ -99,6 +99,9 @@ return {
   opts = {
     -- make sure mason installs the server
     servers = {
+      ruff = {
+        cmd = { "/home/geoff/.local/share/nvim/mason/bin/ruff-lsp", "--stdio" },
+      }
       ---@type lspconfig.options.tsserver
       tsserver = {
         keys = {
