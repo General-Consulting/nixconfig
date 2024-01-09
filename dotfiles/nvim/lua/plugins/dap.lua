@@ -24,10 +24,12 @@ return {
      local nls = require("null-ls")
      opts.sources = vim.list_extend(opts.sources, {
        -- Order of formatters matters. They are used in order of appearance.
+       nls.builtins.formatting.ruff_format,
        nls.builtins.formatting.ruff,
+       nls.builtins.formatting.refactoring,
        nls.builtins.formatting.black,
+       nls.builtins.formatting.pyflyby,
        nls.builtins.diagnostics.ruff,
-       nls.builtins.diagnostics.pylsp
      })
    end,
  },
