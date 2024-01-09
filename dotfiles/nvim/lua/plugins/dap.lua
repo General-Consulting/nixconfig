@@ -27,6 +27,7 @@ return {
        nls.builtins.formatting.ruff,
        nls.builtins.formatting.black,
        nls.builtins.diagnostics.ruff,
+       nls.builtins.diagnostics.pylsp
      })
    end,
  },
