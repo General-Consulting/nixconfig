@@ -183,6 +183,7 @@
     moreutils
     (python3.withPackages (p: (with p; [
       pyright
+      evdev
       python-lsp-server
       python-lsp-ruff
     ])))
