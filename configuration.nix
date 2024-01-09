@@ -178,6 +178,7 @@
     stack
     obs-studio
     networkmanagerapplet
+    nix-index
     helix
     feh
     moreutils
