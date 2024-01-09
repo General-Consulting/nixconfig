@@ -26,10 +26,10 @@ return {
        -- Order of formatters matters. They are used in order of appearance.
        nls.builtins.formatting.ruff_format,
        nls.builtins.formatting.ruff,
-       nls.builtins.formatting.refactoring,
+       nls.builtins.code_actions.refactoring,
+       nls.builtins.code_actions.statix,
        nls.builtins.formatting.black,
        nls.builtins.formatting.pyflyby,
-       nls.builtins.diagnostics.ruff,
      })
    end,
  },
