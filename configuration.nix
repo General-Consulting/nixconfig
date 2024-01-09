@@ -182,15 +182,6 @@
     helix
     feh
     moreutils
-    (python3.withPackages (p: (with p; [
-      pyright
-      evdev
-      python-lsp-server
-      python-lsp-ruff
-    ])))
-    poetry
-    cairo
-    pango
     stalonetray
     xorg.xmodmap
   ];
