@@ -182,6 +182,7 @@
     helix
     feh
     moreutils
+    linuxHeaders
     stalonetray
     xorg.xmodmap
   ];
