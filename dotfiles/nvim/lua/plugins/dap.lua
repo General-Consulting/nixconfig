@@ -13,7 +13,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
     if type(opts.ensure_installed) == "table" then
-      vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+      vim.list_extend(opts.ensure_installed, { "typescript", "tsx", "ninja", "python" })
     end
   end,
 },
@@ -23,12 +23,22 @@ return {
   optional = true,
   dependencies = {
     {
+
+    "mfussenegger/nvim-dap-python",
       "williamboman/mason.nvim",
       opts = function(_, opts)
         opts.ensure_installed = opts.ensure_installed or {}
         table.insert(opts.ensure_installed, "js-debug-adapter")
       end,
-    },
+      keys = {
+        { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+        { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+      },
+      config = function()
+        local path = require("mason-registry").get_package("debugpy"):get_install_path()
+        require("dap-python").setup(path .. "/venv/bin/python")
+      end,
+      },
   },
   opts = function()
     local dap = require("dap")
@@ -93,7 +103,17 @@ return {
       end
   end,
 },
-
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "mfussenegger/nvim-dap-python",
+    },
+    cmd = "VenvSelect",
+    opts = {
+      dap_enabled = true,
+    },
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  },
 {
   "neovim/nvim-lspconfig",
   opts = {
