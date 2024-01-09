@@ -150,9 +150,6 @@ return {
         end,
       },
     servers = {
-      ruff_lsp = {
-        cmd = { "/home/geoff/.local/share/nvim/mason/bin/ruff-lsp", "--stdio" },
-      },
       ---@type lspconfig.options.tsserver
       tsserver = {
         keys = {
