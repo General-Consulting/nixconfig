@@ -41,7 +41,6 @@
     shotcut
     gnucash
     mplayer
-    manim
     firefox
     gopls
     pyright
