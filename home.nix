@@ -44,6 +44,7 @@
     firefox
     gopls
     pyright
+    openscad
   ];
 
   home.file = {
