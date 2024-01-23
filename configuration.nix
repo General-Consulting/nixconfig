@@ -243,6 +243,9 @@
 		127.0.0.1 api
 		127.0.0.1 web
 		127.0.0.1 oathkeeper
+		127.0.0.1 ory.test.info
+		127.0.0.1 mail.test.info
+
 		
 		
 	'';
