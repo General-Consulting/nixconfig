@@ -245,7 +245,7 @@
 		127.0.0.1 oathkeeper
     192.168.49.2 mail.test.info
     192.168.49.2 ory.test.info
-    192.168.49.2 admin-ui.test.info
+    192.168.49.2 ory-admin.test.info
 		
 	'';
 
