@@ -45,6 +45,7 @@
     gopls
     pyright
     openscad
+    krusader
   ];
 
   home.file = {
