@@ -45,7 +45,7 @@
     gopls
     pyright
     openscad
-    xfce.thunar
+    gnome.nautilus
   ];
 
   home.file = {
