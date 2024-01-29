@@ -45,7 +45,7 @@
     gopls
     pyright
     openscad
-    krusader
+    dolphin
   ];
 
   home.file = {
