@@ -45,7 +45,7 @@
     gopls
     pyright
     openscad
-    dolphin
+    xfce.thunar
   ];
 
   home.file = {
