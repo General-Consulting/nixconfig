@@ -13,22 +13,18 @@ Some specific choices include:
  - xmonad
      - with lightdm 
 
-Partially Working:
- - Dual 4k 60fps display:
-    - display port connected monitors are not reliable iin coming back from suspend without a log out
 
 Working:
  - Dual 4k 60fps display:
     - hdmi 
-    - usb-c -> display port
+    - ~~usb-c ->~~ display port
  - Bluetooth via usb dongle
  - Wifi
  - Sound and Video (slack, zoom etc)
  - Keyboard and Mouse remote control of external OSX machine as extended monitor using Barrier.
 
-Not Working:
+Not Tested:
  - fingerprint reader
-    - this is actually just untested / unsetup.  i suspect it will work fine.
  
 
 ![image](https://github.com/General-Consulting/nixconfig/assets/143022822/21d3e4c6-88e4-4436-8b43-f54d96a27893)
