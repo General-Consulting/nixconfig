@@ -70,11 +70,9 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        marksman = {
+        markdownlint = {
           settings = {
-            markdownlint = {
               ["MD013"] = { enabled = false },
-            },
           },
         },
       },
