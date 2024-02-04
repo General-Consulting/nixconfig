@@ -73,7 +73,7 @@ return {
         marksman = {
           settings = {
             markdownlint = {
-              ["MD007"] = { enabled = false },
+              ["MD013"] = { enabled = false },
             },
           },
         },
