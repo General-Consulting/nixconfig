@@ -43,6 +43,7 @@ return {
         "json",
         "lua",
         "markdown",
+        "markdown-preview",
         "markdown_inline",
         "query",
         "regex",
