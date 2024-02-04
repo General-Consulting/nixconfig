@@ -28,8 +28,6 @@ return {
        nls.builtins.formatting.ruff,
        nls.builtins.code_actions.refactoring,
        nls.builtins.code_actions.statix,
-       nls.builtins.formatting.black,
-       nls.builtins.formatting.pyflyby,
      })
    end,
  },
