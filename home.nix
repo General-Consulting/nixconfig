@@ -45,6 +45,7 @@
     gopls
     pyright
     openscad
+    ffmpeg
     gnome.nautilus
   ];
 
