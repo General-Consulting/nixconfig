@@ -59,6 +59,9 @@
       source = ./dotfiles/nvim;
       recursive = true;
     };
+
+   ".vimrc".source = ./dotfiles/vimrc;
+
    ".config/helix/" = {
       source = ./dotfiles/helix;
       recursive = true;
@@ -111,7 +114,6 @@
   programs.vim = {
    enable = true;
    plugins = with pkgs.vimPlugins; [nerdtree];
-   extraConfig = builtins.readFile ../../nixconfig/dotfiles/vimrc;
   };
 
 }
