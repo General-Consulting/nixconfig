@@ -10,9 +10,11 @@ return {
 	 hide_by_name = {
 	   '.DS_Store',
 	   '.direnv',
-	   '.next',
+	   '/.next',
 	 },
 	never_show = {},
+	   '/.next',
+	   '/.direnv',
       },
     }
   }
