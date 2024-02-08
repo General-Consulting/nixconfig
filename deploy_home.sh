@@ -24,9 +24,6 @@ echo "Configuration is correct."
 read -p "Enter commit message [Capturing new home-manager config]: " commit_msg
 commit_msg=${commit_msg:-'Capturing new home-manager config'}
 
-# Updating home.nix configuration
-echo "Updating home.nix configuration..."
-
 # Proceed with git operations
 echo "Committing changes to Git with message: '$commit_msg'..."
 git add .
