@@ -111,7 +111,16 @@ return {
     opts = {
       dap_enabled = true,
     },
-    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    keys = { 
+      { 
+        "<leader>aa", 
+        function()
+          require('align').align_to_char({
+            length =1,
+          }), 
+        desc = "align to char" 
+      } 
+    },
   },
 {
   "neovim/nvim-lspconfig",

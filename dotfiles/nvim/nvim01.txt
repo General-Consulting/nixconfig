@@ -1,0 +1,498 @@
+--
+././lua/config/lazy.lua
+--
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  -- bootstrap lazy.nvim
+  -- stylua: ignore
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+end
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+
+require("lazy").setup({
+  spec = {
+    -- add LazyVim and import its plugins
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- import any extras modules here
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
+    { import = "lazyvim.plugins.extras.dap.core" },
+    -- { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    -- import/override with your plugins
+    { import = "plugins" },
+  },
+  defaults = {
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    lazy = false,
+    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+    -- have outdated releases, which may break your Neovim install.
+    version = false, -- always use the latest git commit
+    -- version = "*", -- try installing the latest stable version for plugins that support semver
+  },
+  install = { colorscheme = { "tokyonight", "habamax" } },
+  checker = { enabled = true }, -- automatically check for plugin updates
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
+--
+--
+././lua/config/keymaps.lua
+--
+--
+--
+././lua/config/options.lua
+--
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+--
+function _G.current_tab()
+  local curr_buf = vim.fn.bufnr()
+  local total = 0
+  local curr_tab
+
+  for i = 1, vim.fn.tabpagenr('$') do
+    total = total + 1
+    for _, bufnr in ipairs(vim.fn.tabpagebuflist(i)) do
+      if bufnr == curr_buf then
+        curr_tab = i
+      end
+    end
+  end
+
+  return string.format('(%d of %d)', curr_tab, total)
+end
+
+vim.opt.titlestring = [[%f %h%m%r%w - %{v:progname} %{luaeval('current_tab()')}]]
+--
+--
+././lua/config/autocmds.lua
+--
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+--
+--
+././lua/plugins/deno-nvim.lua
+--
+return {
+  "sigmasd/deno-nvim"
+}
+--
+--
+././lua/plugins/neo-tree.lua
+--
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  opts = {
+    filesystem = {
+      filtered_items = {
+	 visible = true,
+	 show_hidden_count = true,
+	 hide_dotfiles = false,
+	 hide_gitignored = true,
+	 hide_by_name = {
+	   '.DS_Store',
+	   '.direnv',
+	   '/.next',
+	 },
+	never_show = {},
+	   '/.next',
+	   '/.direnv',
+      },
+    }
+  }
+}
+--
+--
+././lua/plugins/dap.lua
+--
+return {
+
+
+{
+  "williamboman/mason.nvim",
+  opts = function(_, opts)
+    opts.ensure_installed = opts.ensure_installed or {}
+    table.insert(opts.ensure_installed, "js-debug-adapter")
+  end,
+},
+
+  {
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(_, opts)
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, { "typescript", "tsx", "ninja", "python" })
+    end
+  end,
+},
+{
+  "mfussenegger/nvim-dap",
+  optional = true,
+  dependencies = {
+    {
+
+    "mfussenegger/nvim-dap-python",
+      "williamboman/mason.nvim",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "js-debug-adapter")
+      end,
+      keys = {
+        { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+        { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+      },
+      config = function()
+        local path = require("mason-registry").get_package("debugpy"):get_install_path()
+        require("dap-python").setup(path .. "/venv/bin/python")
+      end,
+      },
+  },
+  opts = function()
+    local dap = require("dap")
+    if not dap.adapters["pwa-node"] then
+      require("dap").adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          -- 💀 Make sure to update this path to point to your installation
+          args = {
+            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+              .. "/js-debug/src/dapDebugServer.js",
+            "${port}",
+          },
+        },
+      }
+    end
+    for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+        dap.configurations[language] = {
+          {
+            type = "chrome",
+            request= "launch",
+            url = "http://localhost:4443",
+            name = "attach to chrome debugger on 4443",
+            runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable",
+            webRoot = '${workspaceFolder}',
+
+          },
+          {
+            type = "pwa-node",
+            request= "launch",
+            command = "npm run dev",
+            name = "npm run dev"
+          },
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach",
+            port = 4322,
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
+            remoteRoot = '/usr/src/app'
+          },
+          {
+            name = "Attach to API",
+            type = "pwa-node",
+            request = "attach",
+            port = 4322,
+            remoteRoot = '/usr/src/app',
+            cwd=vim.fn.getcwd()
+          }
+        }
+      end
+  end,
+},
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "mfussenegger/nvim-dap-python",
+    },
+    cmd = "VenvSelect",
+    opts = {
+      dap_enabled = true,
+    },
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  },
+{
+  "neovim/nvim-lspconfig",
+  opts = {
+    -- make sure mason installs the server
+      --
+      setup = {
+        ruff_lsp = function()
+          require("lazyvim.util").lsp.on_attach(function(client, _)
+            if client.name == "ruff_lsp" then
+              -- Disable hover in favor of Pyright
+              client.server_capabilities.hoverProvider = false
+            end
+          end)
+        end,
+        pyright = function()
+          require("lazyvim.util").lsp.on_attach(function(client, _)
+            if client.name == "pyright" then
+              -- disable hover in favor of jedi-language-server
+            end
+          end)
+        end,
+      },
+    servers = {
+      ---@type lspconfig.options.tsserver
+      tsserver = {
+        keys = {
+          {
+            "<leader>co",
+            function()
+              vim.lsp.buf.code_action({
+                apply = true,
+                context = {
+                  only = { "source.organizeImports.ts" },
+                  diagnostics = {},
+                },
+              })
+            end,
+            desc = "Organize Imports",
+          },
+          {
+            "<leader>cR",
+            function()
+              vim.lsp.buf.code_action({
+                apply = true,
+                context = {
+                  only = { "source.removeUnused.ts" },
+                  diagnostics = {},
+                },
+              })
+            end,
+            desc = "Remove Unused Imports",
+          },
+        },
+        settings = {
+          typescript = {
+            format = {
+              indentSize = vim.o.shiftwidth,
+              convertTabsToSpaces = vim.o.expandtab,
+              tabSize = vim.o.tabstop,
+            },
+          },
+          javascript = {
+            format = {
+              indentSize = vim.o.shiftwidth,
+              convertTabsToSpaces = vim.o.expandtab,
+              tabSize = vim.o.tabstop,
+            },
+          },
+          completions = {
+            completeFunctionCalls = true,
+          },
+        },
+      },
+    },
+  },
+}
+
+}
+--
+--
+././lua/plugins/diagnostics.lua
+--
+return {
+  {
+    "folke/trouble.nvim",
+    -- opts will be merged with the parent spec
+    opts = { use_diagnostic_signs = true },
+  },
+
+  -- add symbols-outline
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    config = true,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "emoji" })
+    end,
+  },
+
+  -- add telescope-fzf-native
+  {
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
+  },
+
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- add tsx and treesitter
+      vim.list_extend(opts.ensure_installed, {
+        "tsx",
+        "typescript",
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        markdownlint = {
+          settings = {
+              ["MD013"] = { enabled = false },
+          },
+        },
+      },
+    },
+  },
+}
+--
+--
+././lua/plugins/conjure.lua
+--
+return {
+    "Olical/conjure",
+    ft = { "clojure", "fennel", "python" }, -- etc
+    -- [Optional] cmp-conjure for cmp
+    dependencies = {
+        {
+            "PaterJason/cmp-conjure",
+            config = function()
+                local cmp = require("cmp")
+                local config = cmp.get_config()
+                table.insert(config.sources, {
+                    name = "buffer",
+                    option = {
+                        sources = {
+                            { name = "conjure" },
+                        },
+                    },
+                })
+                cmp.setup(config)
+            end,
+        },
+    },
+    config = function(_, opts)
+        require("conjure.main").main()
+        require("conjure.mapping")["on-filetype"]()
+    end,
+    init = function()
+	       -- Set configuration options here
+        vim.g["conjure#debug"] = true
+    end,
+}
+--
+--
+././lua/plugins/conjure-deno.lua
+--
+return {
+  'sigmaSd/conjure-deno',
+  depenpendcies = {{
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-treesitter.install').update({ with_sync = true })
+    end,
+  },
+    {
+      'Olical/conjure'
+    }}
+}
+--
+--
+././lua/plugins/images.lua
+--
+return {
+  "3rd/image.nvim",
+  enabled = false,
+  opts = {
+    {
+      backend = "kitty",
+      integrations = {
+        markdown = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = true,
+          filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+        },
+        neorg = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = true,
+          filetypes = { "norg" },
+        },
+      },
+      max_width = nil,
+      max_height = nil,
+      max_width_window_percentage = nil,
+      max_height_window_percentage = 50,
+      window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
+      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+      editor_only_render_when_focused = true, -- auto show/hide images when the editor gains/looses focus
+      tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+      hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
+    },
+  },
+}
+--
+--
+././init.lua
+--
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+--
