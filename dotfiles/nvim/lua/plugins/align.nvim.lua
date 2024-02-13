@@ -8,7 +8,7 @@ return {
       { 
         "<leader>c|", 
         function()
-          require('align').align_to_char({
+          require('Vonr/align.nvim').align_to_char({
             length =1,
           }), 
         desc = "align to char" 
