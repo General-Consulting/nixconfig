@@ -6,7 +6,7 @@ return {
     end
     keys = { 
       { 
-        "<leader>aa", 
+        "<leader>c|", 
         function()
           require('align').align_to_char({
             length =1,
