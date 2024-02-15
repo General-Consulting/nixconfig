@@ -10,15 +10,23 @@ DOTFILES_DEST="$HOME/.config/home-manager/dotfiles"
 [ -d "$HOME_NIX_DEST" ] && rm -r "$HOME_NIX_DEST"
 ln -s $PWD $HOME_NIX_DEST
 
+# Check if the Neovim configuration is correct
+echo "Checking Neovim configuration correctness..."
+if ! nvim --headless -u "$NVIM_CONFIG_SOURCE" -c "quit"; then
+	echo "Neovim configuration check failed. Exiting script."
+	exit 1
+fi
+echo "Neovim configuration is correct."
+
 # Check if the configuration is correct
 # This assumes `home-manager` can validate the configuration without applying it.
 # Adjust the command if your setup requires a different way to validate.
-echo "Checking configuration correctness..."
+echo "Home manager configuration correctness..."
 if ! home-manager switch -n; then
 	echo "Configuration check failed. Exiting script."
 	exit 1
 fi
-echo "Configuration is correct."
+echo "Home manager Configuration is correct."
 
 # Prompting the user for a commit message with a default option
 read -p "Enter commit message [Capturing new home-manager config]: " commit_msg
