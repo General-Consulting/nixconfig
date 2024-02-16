@@ -7,7 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, pkgs, lib, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       hostname = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -21,8 +21,6 @@
 
             home-manager.extraSpecialArgs = {
               inherit nixpkgs;
-              inherit pkgs;
-              inherit lib;
             };
           }
         ];
