@@ -20,6 +20,7 @@
             home-manager.users.geoff = import ./home.nix;
 
             home-manager.extraSpecialArgs = {
+              inherit nixpkgs;
               inherit pkgs;
               inherit lib;
             };
