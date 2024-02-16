@@ -246,6 +246,7 @@
     192.168.49.2 mail.test.info
     192.168.49.2 ory.test.info
     192.168.49.2 ory-admin.test.info
+    192.168.49.2 pdf.test.info
 		
 	'';
 
