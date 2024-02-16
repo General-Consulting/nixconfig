@@ -8,7 +8,9 @@
 
   home.packages = with pkgs; [
     plantuml
+    vscode
     awscli2
+    obsidian
     tmux
     tailscale
     kubectl
@@ -18,6 +20,7 @@
     google-chrome
     xclip
     scrot
+    newman
     xorg.xev
     nerdfonts
     shellcheck
@@ -43,6 +46,7 @@
     ffmpeg
     gnome.nautilus
     cargo
+    obsidian
   ];
 
   home.file = {
