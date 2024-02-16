@@ -8,8 +8,8 @@
     ];
   imports =
     [ # Include the results of the hardware scan.
-     <home-manager/nixos>
 #     ./home-manager
+     <home-manager/nixos>
      ./hardware-configuration.nix
      ./nixos-hardware/common/cpu/amd
      ./nixos-hardware/common/gpu/amd
@@ -140,13 +140,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [
-    (self: super: {
-      poetry2nix = super.poetry2nix;
-    })
-  ];
-
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     appeditor
     formatter
@@ -165,7 +158,6 @@
     arandr
     dmenu
     nixpkgs-fmt
-    lunarvim
     trayer
     haskellPackages.xmonad
     haskellPackages.xmobar
@@ -177,7 +169,6 @@
     ripgrep
     stack
     obs-studio
-    networkmanagerapplet
     nix-index
     helix
     feh

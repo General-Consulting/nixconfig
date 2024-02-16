@@ -46,7 +46,6 @@
     ffmpeg
     gnome.nautilus
     cargo
-    obsidian
   ];
 
   home.file = {
