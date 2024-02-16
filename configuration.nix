@@ -97,7 +97,7 @@
       startx.enable = true;
     };
 
-    layout = "us";
+    xkb.layout = "us";
     # displayManager.sessionCommands = ''
     #   ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
     # '';
