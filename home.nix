@@ -10,7 +10,6 @@
     plantuml
     vscode
     awscli2
-    obsidian
     tmux
     tailscale
     kubectl

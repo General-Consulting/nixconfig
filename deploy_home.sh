@@ -22,7 +22,7 @@ echo "Neovim configuration is correct."
 # This assumes `home-manager` can validate the configuration without applying it.
 # Adjust the command if your setup requires a different way to validate.
 echo "Home manager configuration correctness..."
-if ! home-manager switch -n; then
+if ! home-manager switch -n --show-trace; then
 	echo "Configuration check failed. Exiting script."
 	exit 1
 fi
