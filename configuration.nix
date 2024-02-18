@@ -129,7 +129,7 @@
   users.users.geoff = {
     isNormalUser = true;
     description = "geoff";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "root"];
     shell = pkgs.zsh;
     packages = with pkgs; [
     home-manager
