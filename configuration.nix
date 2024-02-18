@@ -212,6 +212,7 @@
   services.openssh.enable = true;
   services.avahi = {
       enable = true;
+      publish.enable = true;
     };
 
   # Open ports in the firewall.
