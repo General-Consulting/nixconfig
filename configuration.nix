@@ -231,12 +231,37 @@
 
       # Create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
+      dockerSocket.enable = true;
+
 
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
     };
-  
+  networking.nftables = {
+    enable = true;
+    ruleset = ''
+        table ip nat {
+          chain PREROUTING {
+            type nat hook prerouting priority dstnat; policy accept;
+            iifname "enp2s0" tcp dport 80 dnat to 192.168.49.2
+          }
+        }
+    '';
+  };  
+
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "enp2s0" ];
+    externalInterface = "br-a86e09d74a1a";
+    forwardPorts = [
+      {
+        sourcePort = 80;
+        proto = "tcp";
+        destination = "10.100.0.3:80";
+      }
+    ];
+  };
   networking.extraHosts = 
 	'' 
 		192.168.0.106 nixos
