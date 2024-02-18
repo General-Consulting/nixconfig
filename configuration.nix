@@ -115,7 +115,6 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -124,7 +123,7 @@
     #jack.enable = true;
   };
 
-  services.tailscale.enable = true;
+  services.tailscale.enable = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.geoff = {
@@ -211,6 +210,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.avahi = {
+      enable = true;
+    };
 
   # Open ports in the firewall.
   # Or disable the firewall altogether.
@@ -222,7 +224,7 @@
   networking.firewall.allowedTCPPorts = [ 2375 22 80 443 ];
   networking.firewall.allowedTCPPortRanges = [ {from = 4000; to = 5550;} {from = 5959; to = 8000;}];
   networking.firewall.allowedUDPPorts = [24800 ];
-  networking.firewall.allowedUDPPortRanges = [{from = 5353; to = 1000;}];
+  networking.firewall.allowedUDPPortRanges = [{from = 5353; to = 10000;}];
   systemd.services.NetworkManager-wait-online.enable = false;
 
   system.stateVersion = "24.05"; 
