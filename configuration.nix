@@ -217,15 +217,10 @@
 
   # Open ports in the firewall.
   # Or disable the firewall altogether.
-  networking.networkmanager.enable = true;
-  networking.firewall.trustedInterfaces = ["enp2s0"];
+  networking.networkmanager.enable = false;
 
   networking.firewall.enable = false;
-  networking.nat.enable = true;
-  networking.firewall.allowedTCPPorts = [ 2375 22 80 443 ];
-  networking.firewall.allowedTCPPortRanges = [ {from = 4000; to = 5550;} {from = 5959; to = 8000;}];
-  networking.firewall.allowedUDPPorts = [24800 ];
-  networking.firewall.allowedUDPPortRanges = [{from = 5353; to = 10000;}];
+
   systemd.services.NetworkManager-wait-online.enable = false;
 
   system.stateVersion = "24.05"; 
