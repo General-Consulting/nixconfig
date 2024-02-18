@@ -218,6 +218,7 @@
   networking.firewall.trustedInterfaces = ["enp2s0"];
 
   networking.firewall.enable = false;
+  networking.nat.enable = true;
   networking.firewall.allowedTCPPorts = [ 2375 22 80 443 ];
   networking.firewall.allowedTCPPortRanges = [ {from = 4000; to = 5550;} {from = 5959; to = 8000;}];
   networking.firewall.allowedUDPPorts = [24800 ];

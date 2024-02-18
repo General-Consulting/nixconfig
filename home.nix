@@ -9,7 +9,6 @@ let obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obs
   );
 in
 {
-
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
