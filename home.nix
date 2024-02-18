@@ -55,6 +55,7 @@ in
     gnome.nautilus
     cargo
     obsidian
+    ndi
   ];
 
   home.file = {
@@ -91,6 +92,11 @@ in
   };
   };
 
+
+  programs.obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [obs-ndi];
+    };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
