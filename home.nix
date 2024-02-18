@@ -90,6 +90,7 @@ in
     '';
       shellAliases = {
     ll = "ls -l";
+    docker-compose = "podman-compose";
   };
   };
 
