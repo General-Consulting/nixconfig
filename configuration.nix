@@ -29,7 +29,6 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
@@ -215,11 +214,15 @@
 
   # Open ports in the firewall.
   # Or disable the firewall altogether.
+  networking.networkmanager.enable = true;
+  networking.firewall.trustedInterfaces = ["enp2s0"];
+
   networking.firewall.enable = false;
   networking.firewall.allowedTCPPorts = [ 2375 22 80 443 ];
   networking.firewall.allowedTCPPortRanges = [ {from = 4000; to = 5550;} {from = 5959; to = 8000;}];
   networking.firewall.allowedUDPPorts = [24800 ];
   networking.firewall.allowedUDPPortRanges = [{from = 5353; to = 1000;}];
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   system.stateVersion = "24.05"; 
 
