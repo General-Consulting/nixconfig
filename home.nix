@@ -56,6 +56,7 @@ in
     obsidian
     ndi
     busybox
+    podman-compose
   ];
 
   home.file = {
