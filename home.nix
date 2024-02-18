@@ -56,6 +56,7 @@ in
     cargo
     obsidian
     ndi
+    busybox
   ];
 
   home.file = {
