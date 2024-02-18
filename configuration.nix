@@ -211,7 +211,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.avahi = {
-      enable = true;
+      enable = false;
       publish.enable = true;
     };
 
@@ -245,7 +245,6 @@
     192.168.49.2 ory.test.info
     192.168.49.2 ory-admin.test.info
     192.168.49.2 pdf.test.info
-		
 	'';
 
 }
