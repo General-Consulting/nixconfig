@@ -19,8 +19,7 @@ return {
 },
 { "mxsdev/nvim-dap-vscode-js", dependencies = {
     "mfussenegger/nvim-dap"
-  } 
-
+  },
   opts = function()
     if not dap.adapters["node-terminal"] then
       require("dap").adapters["pwa-node"] = {
