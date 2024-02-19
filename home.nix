@@ -57,6 +57,7 @@ in
     ndi
     busybox
     podman-compose
+    luarocks
   ];
 
   home.file = {
