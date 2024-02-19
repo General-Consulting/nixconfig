@@ -75,7 +75,7 @@ return {
             name = "npm run dev"
           },
           {
-            type = "pwa-node",
+            type = "node-terminal",
             request= "launch",
             command = "yarn",
             name = "yarn run dev"
