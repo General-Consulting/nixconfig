@@ -57,7 +57,8 @@ in
     ndi
     busybox
     podman-compose
-    luarocks
+    lua54Packages.luarocks-nix
+    luarocks-packages-updater
   ];
 
   home.file = {
