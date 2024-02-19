@@ -77,7 +77,7 @@ return {
           {
             type = "pwa-node",
             request= "launch",
-            command = "yarn run dev",
+            command = "yarn",
             name = "yarn run dev"
           },
           {
