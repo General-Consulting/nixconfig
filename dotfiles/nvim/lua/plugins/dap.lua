@@ -17,6 +17,24 @@ return {
     end
   end,
 },
+{ "mxsdev/nvim-dap-vscode-js", dependencies = {
+    "mfussenegger/nvim-dap"
+  } 
+
+  opts = function()
+    for _, language in ipairs({ "typescript", "javascript" }) do
+      require("dap").adapters[language] = {
+              {
+                type = "node-terminal",
+                request= "launch",
+                command = "yarn",
+                name = "yarn run dev",  
+                cwd = "${workspaceFolder}",
+                console = "integratedTerminal",
+              }
+      }
+    end
+},
 {
   "mfussenegger/nvim-dap",
   optional = true,
@@ -42,7 +60,7 @@ return {
   opts = function()
     local dap = require("dap")
     if not dap.adapters["node-terminal"] then
-      require("dap").adapters["node-terminal"] = {
+      require("dap").adapters["pwa-node"] = {
         type = "server",
         host = "localhost",
         port = "${port}",
