@@ -76,6 +76,12 @@ return {
           },
           {
             type = "pwa-node",
+            request= "launch",
+            command = "yarn run dev",
+            name = "yarn run dev"
+          },
+          {
+            type = "pwa-node",
             request = "launch",
             name = "Launch file",
             program = "${file}",
