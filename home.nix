@@ -13,7 +13,6 @@ in {
   home.homeDirectory = "/home/geoff";
 
   home.stateVersion = "23.11";
-  extraGroups = [ "networkmanager" "wheel" "docker" "root" "podman" ];
 
   home.packages = with pkgs; [
     plantuml

@@ -118,10 +118,12 @@
   users.users.geoff = {
     isNormalUser = true;
     description = "geoff";
-    extraGroups = [ "networkmanager" "wheel" "docker" "root" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "root"];
     shell = pkgs.zsh;
     packages = with pkgs; [ home-manager ];
   };
+
+  users.extraGroups.docker.members = [ "geoff" "minikube"];
 
   nixpkgs.config.allowUnfree = true;
 
