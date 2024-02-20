@@ -1,18 +1,18 @@
 { pkgs, lib, ... }:
-let obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
-    pkgs.obsidian.override {
+let
+  obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version)
+    "Obsidian no longer requires EOL Electron" (pkgs.obsidian.override {
       electron = pkgs.electron_25.overrideAttrs (_: {
-        preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+        preFixup =
+          "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
         meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
       });
-    }
-  );
-in
-{
+    });
+in {
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
-  home.stateVersion = "23.11"; 
+  home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
     plantuml
@@ -62,23 +62,23 @@ in
   ];
 
   home.file = {
-   ".Xmodmap".source = ./dotfiles/Xmodmap;
-   ".xmonad/" = {
+    ".Xmodmap".source = ./dotfiles/Xmodmap;
+    ".xmonad/" = {
       source = ./dotfiles/.xmonad;
       recursive = true;
     };
-   ".config/nvim/" = {
+    ".config/nvim/" = {
       source = ./dotfiles/nvim;
       recursive = true;
     };
 
-   ".vimrc".source = ./dotfiles/vimrc;
+    ".vimrc".source = ./dotfiles/vimrc;
 
-   ".config/helix/" = {
+    ".config/helix/" = {
       source = ./dotfiles/helix;
       recursive = true;
     };
-   "monitors.sh".source = ./dotfiles/monitors.sh;
+    "monitors.sh".source = ./dotfiles/monitors.sh;
   };
 
   programs.rofi = {
@@ -88,19 +88,17 @@ in
 
   programs.zsh = {
     enable = true;
-    initExtra = ''
-    '';
-      shellAliases = {
-    ll = "ls -l";
-    docker-compose = "podman-compose";
+    initExtra = "";
+    shellAliases = {
+      ll = "ls -l";
+      docker-compose = "podman-compose";
+    };
   };
-  };
-
 
   programs.obs-studio = {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins; [obs-ndi];
-    };
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [ obs-ndi ];
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -117,15 +115,15 @@ in
     userName = "Geoff Golder";
     userEmail = "geoff@generalconsulting.io";
 
-   extraConfig = {
-    merge = { tool = "vimdiff"; };
-    diff  = { tool = "vimdiff"; };
-   };
+    extraConfig = {
+      merge = { tool = "vimdiff"; };
+      diff = { tool = "vimdiff"; };
+    };
   };
 
   programs.vim = {
-   enable = true;
-   plugins = with pkgs.vimPlugins; [nerdtree];
+    enable = true;
+    plugins = with pkgs.vimPlugins; [ nerdtree ];
   };
 
 }

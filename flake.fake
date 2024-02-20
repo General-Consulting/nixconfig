@@ -1,0 +1,84 @@
+{
+  description = "General Consulting Mono Repo";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-ndi.url = "github:matthewcroughan/flake-ndi";
+
+    flake-utils.url = "github:numtide/flake-utils";
+    devshell.url = "github:numtide/devshell";
+    flake-root.url = "github:srid/flake-root";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
+  };
+
+  outputs = { self, nixpkgs, flake-utils, devshell, flake-parts, flake-root, treefmt-nix, flake-ndi, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+
+
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      imports = [
+        inputs.flake-root.flakeModule
+        inputs.treefmt-nix.flakeModule
+        inputs.devshell.flakeModule
+      ];
+
+      perSystem = { system, self', config, inputs', lib, ... }: 
+
+       let 
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+
+      
+
+        in 
+      {
+
+
+      packages = {
+        default= devshell;
+      };
+
+
+        treefmt.config = {
+          inherit (config.flake-root) projectRootFile;
+          package = pkgs.treefmt;
+          programs.nixpkgs-fmt.enable = true;
+        };
+
+        
+        devshells.default = {
+          name = "geoff's nix config";
+
+        commands = [
+          {
+              help = "deploy the OS (configuration.nix)";
+              name = "os";
+              command = "./deploy_os.sh";
+          }
+          {
+              help = "deploy home config (home.nix)";
+              name = "home";
+              command = "./deploy_home.sh";
+          }
+        
+        ];
+
+        };
+
+      };
+
+    };
+}
