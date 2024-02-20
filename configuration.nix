@@ -238,7 +238,7 @@
     forwardPorts = [{
       sourcePort = 80;
       proto = "tcp";
-      destination = "192.168.49.2";
+      destination = "192.168.49.2:80";
     }];
   };
 
