@@ -217,7 +217,7 @@
 
   # Open ports in the firewall.
   # Or disable the firewall altogether.
-  networking.networkmanager.enable = false;
+  networking.networkmanager.enable = true;
 
   networking.firewall.enable = false;
 
