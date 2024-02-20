@@ -56,7 +56,6 @@ in {
     obsidian
     ndi
     busybox
-    podman-compose
     lua54Packages.luarocks-nix
     luarocks-packages-updater
   ];
@@ -91,7 +90,6 @@ in {
     initExtra = "";
     shellAliases = {
       ll = "ls -l";
-      docker-compose = "podman-compose";
     };
   };
 
