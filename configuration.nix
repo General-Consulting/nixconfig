@@ -202,6 +202,9 @@
     publish.enable = true;
   };
 
+  services = {
+      cloudflared = import ./services/cloudflared.nix;
+  };
   # Open ports in the firewall.
   # Or disable the firewall altogether.
   networking.networkmanager.enable = true;

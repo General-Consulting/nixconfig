@@ -125,4 +125,6 @@ in {
     plugins = with pkgs.vimPlugins; [ nerdtree ];
   };
 
+
+
 }
