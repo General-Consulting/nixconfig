@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, inputs, lib, config, ... }:
+{
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
@@ -118,12 +119,12 @@
   users.users.geoff = {
     isNormalUser = true;
     description = "geoff";
-    extraGroups = [ "networkmanager" "wheel" "docker" "root"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "root" ];
     shell = pkgs.zsh;
     packages = with pkgs; [ home-manager ];
   };
 
-  users.extraGroups.docker.members = [ "geoff" "minikube"];
+  users.extraGroups.docker.members = [ "geoff" "minikube" ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -203,9 +204,23 @@
     publish.enable = true;
   };
 
-  services = {
-      cloudflared = import ./services/cloudflared.nix;
+
+
+ services = {
+    cloudflared = {
+      enable = true;
+      tunnels = {
+        "eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2" = {
+          credentialsFile = "../.cloudflared/eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2.json";
+          ingress = {
+            "tmp1.vteng.io" = { service = "http://localhost:8001"; };
+          };
+          default = "http_status:404";
+        };
+      };
+    };
   };
+
   # Open ports in the firewall.
   # Or disable the firewall altogether.
   networking.networkmanager.enable = true;
@@ -216,11 +231,7 @@
 
   system.stateVersion = "24.05";
 
-  virtualisation = {
-    docker = {
-      enable = true;
-    };
-  };
+  virtualisation = { docker = { enable = true; }; };
   networking.nftables = {
     enable = true;
     ruleset = ''

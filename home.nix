@@ -88,9 +88,7 @@ in {
   programs.zsh = {
     enable = true;
     initExtra = "";
-    shellAliases = {
-      ll = "ls -l";
-    };
+    shellAliases = { ll = "ls -l"; };
   };
 
   programs.obs-studio = {
@@ -123,7 +121,5 @@ in {
     enable = true;
     plugins = with pkgs.vimPlugins; [ nerdtree ];
   };
-
-
 
 }
