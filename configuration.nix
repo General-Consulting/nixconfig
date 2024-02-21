@@ -149,6 +149,7 @@
     haskellPackages.xmonad
     haskellPackages.xmobar
     neovim
+    cloudflared
     libclang
     cmake
     gcc

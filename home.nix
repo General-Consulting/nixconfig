@@ -58,7 +58,6 @@ in {
     busybox
     lua54Packages.luarocks-nix
     luarocks-packages-updater
-    cloudflared
   ];
 
   home.file = {
