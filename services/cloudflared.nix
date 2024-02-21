@@ -4,11 +4,10 @@
       "00000000-0000-0000-0000-000000000000" = {
         credentialsFile = "~/.config/cloudflared.nixpc";
         ingress = {
-          "*.domain1.com" = {
-            service = "http://localhost:80";
+          "geoffnix.vteng.io" = {
+            service = "http://localhost:8001";
             path = "/*.(jpg|png|css|js)";
           };
-          "*.domain2.com" = "http://localhost:80";
         };
         default = "http_status:404";
       };
