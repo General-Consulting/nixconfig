@@ -211,7 +211,7 @@
       enable = true;
       tunnels = {
         "eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2" = {
-          credentialsFile = "../.cloudflared/eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2.json";
+          credentialsFile = "/home/geoff/.cloudflared/eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2.json";
           ingress = {
             "tmp1.vteng.io" = { service = "http://localhost:8001"; };
           };
