@@ -1,12 +1,14 @@
+let tunnel-id = "eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2";
+in
 {
     enable = true;
     tunnels = {
-      "00000000-0000-0000-0000-000000000000" = {
-        credentialsFile = "~/.config/cloudflared.nixpc";
+      "${tunnel-id}" = {
+        credentialsFile = ".cloudflared/${tunnel-id}.js";
         ingress = {
-          "geoffnix.vteng.io" = {
+          "tmp1.vteng.io" = {
             service = "http://localhost:8001";
-            path = "/*.(jpg|png|css|js)";
+            path = "/*.(jpg|png|css|js|lol)";
           };
         };
         default = "http_status:404";
