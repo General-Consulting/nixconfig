@@ -23,7 +23,6 @@ in {
     kubectl
     synergy
     direnv
-    chromium
     google-chrome
     xclip
     scrot

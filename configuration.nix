@@ -25,6 +25,12 @@
   networking.hostName = "nixos"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+networking.interfaces = {
+enp3s0.ipv4.addresses = [{
+        address = "192.168.99.1";
+        prefixLength = 32;
+      }];
+  };
 
   time.timeZone = "America/New_York";
 
