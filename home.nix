@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 #let
 #  obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version)
 #    "Obsidian no longer requires EOL Electron" (pkgs.obsidian.override {
@@ -57,6 +57,9 @@
     obsidian
     ndi
     busybox
+    stylua
+      (luajit.withPackages (p: with p; [ luacheck ]))
+      lua-language-server
     lua54Packages.luarocks-nix
     luarocks-packages-updater
   ];
