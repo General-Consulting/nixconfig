@@ -10,6 +10,12 @@
 #    });
 #in 
 {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url =
+        "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    }))
+  ];
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
@@ -35,7 +41,6 @@
     trayer
     haskellPackages.xmonad
     haskellPackages.xmobar
-    neovim
     fzf
     lazygit
     feh
@@ -126,5 +131,11 @@
     enable = true;
     plugins = with pkgs.vimPlugins; [ nerdtree ];
   };
+
+  programs.neovim = {
+      enable = true;
+      package = pkgs.neovim-nightly;
+      extraLuaPackages = ps: [ ps.magick ];
+    };
 
 }
