@@ -89,7 +89,7 @@ return {
       },
     },
     opts = function()
-      if not dap.adapters["pwa-node"] then
+      if not require("dap").adapters["pwa-node"] then
         require("dap").adapters["pwa-node"] = {
           type = "server",
           host = "localhost",
@@ -106,7 +106,7 @@ return {
         }
       end
       for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
-        dap.configurations[language] = {
+        require("dap").configurations[language] = {
           {
             type = "chrome",
             request = "launch",
