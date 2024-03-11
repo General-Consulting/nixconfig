@@ -1,116 +1,131 @@
 return {
-
-
-{
-  "williamboman/mason.nvim",
-  opts = function(_, opts)
-    opts.ensure_installed = opts.ensure_installed or {}
-    table.insert(opts.ensure_installed, "js-debug-adapter")
-  end,
-},
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      table.insert(opts.ensure_installed, "js-debug-adapter")
+    end,
+  },
 
   {
-  "nvim-treesitter/nvim-treesitter",
-  opts = function(_, opts)
-    if type(opts.ensure_installed) == "table" then
-      vim.list_extend(opts.ensure_installed, { "typescript", "tsx", "ninja", "python" })
-    end
-  end,
-},
-{ "mxsdev/nvim-dap-vscode-js", dependencies = {
-    "mfussenegger/nvim-dap"
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx", "ninja", "python" })
+      end
+    end,
   },
-  opts = function()
-    if not dap.adapters["node-terminal"] then
-      require("dap").adapters["pwa-node"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "node",
-          args = {
-            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
-            "${port}",
+
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    opts = function()
+      if not dap.adapters["node-terminal"] then
+        require("dap").adapters["pwa-node"] = {
+          type = "server",
+          host = "localhost",
+          port = "${port}",
+          executable = {
+            command = "node",
+            args = {
+              require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+                .. "/js-debug/src/dapDebugServer.js",
+              "${port}",
+            },
+          },
+        }
+      end
+
+      for _, language in ipairs({ "typescript", "javascript" }) do
+        require("dap").adapters[language] = {
+          {
+            type = "node-terminal",
+            request = "launch",
+            command = "yarn",
+            name = "yarn run dev",
+            cwd = "${workspaceFolder}",
+            console = "integratedTerminal",
+          },
+        }
+      end
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
+    dependencies = {
+      {
+
+        "mfussenegger/nvim-dap-python",
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "js-debug-adapter")
+        end,
+        keys = {
+          {
+            "<leader>dPt",
+            function()
+              require("dap-python").test_method()
+            end,
+            desc = "Debug Method",
+            ft = "python",
+          },
+          {
+            "<leader>dPc",
+            function()
+              require("dap-python").test_class()
+            end,
+            desc = "Debug Class",
+            ft = "python",
           },
         },
-      }
-    end
-
-    for _, language in ipairs({ "typescript", "javascript" }) do
-      require("dap").adapters[language] = {
-              {
-                type = "node-terminal",
-                request= "launch",
-                command = "yarn",
-                name = "yarn run dev",  
-                cwd = "${workspaceFolder}",
-                console = "integratedTerminal",
-              }
-      }
-    end
-},
-{
-  "mfussenegger/nvim-dap",
-  optional = true,
-  dependencies = {
-    {
-
-    "mfussenegger/nvim-dap-python",
-      "williamboman/mason.nvim",
-      opts = function(_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        table.insert(opts.ensure_installed, "js-debug-adapter")
-      end,
-      keys = {
-        { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
-        { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+        config = function()
+          local path = require("mason-registry").get_package("debugpy"):get_install_path()
+          require("dap-python").setup(path .. "/venv/bin/python")
+        end,
       },
-      config = function()
-        local path = require("mason-registry").get_package("debugpy"):get_install_path()
-        require("dap-python").setup(path .. "/venv/bin/python")
-      end,
-      },
-  },
-  opts = function()
-    if not dap.adapters["pwa-node"] then
-      require("dap").adapters["pwa-node"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "node",
-          -- 💀 Make sure to update this path to point to your installation
-          args = {
-            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
-            "${port}",
+    },
+    opts = function()
+      if not dap.adapters["pwa-node"] then
+        require("dap").adapters["pwa-node"] = {
+          type = "server",
+          host = "localhost",
+          port = "${port}",
+          executable = {
+            command = "node",
+            -- 💀 Make sure to update this path to point to your installation
+            args = {
+              require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+                .. "/js-debug/src/dapDebugServer.js",
+              "${port}",
+            },
           },
-        },
-      }
-    end
-    for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+        }
+      end
+      for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
         dap.configurations[language] = {
           {
             type = "chrome",
-            request= "launch",
+            request = "launch",
             url = "http://localhost:4443",
             name = "attach to chrome debugger on 4443",
             runtimeExecutable = "/home/geoff/.nix-profile/bin/google-chrome-stable",
-            webRoot = '${workspaceFolder}',
-
+            webRoot = "${workspaceFolder}",
           },
           {
             type = "pwa-node",
-            request= "launch",
+            request = "launch",
             command = "npm run dev",
-            name = "npm run dev"
+            name = "npm run dev",
           },
           {
             type = "node-terminal",
-            request= "launch",
+            request = "launch",
             command = "yarn",
-            name = "yarn run dev"
+            name = "yarn run dev",
           },
           {
             type = "pwa-node",
@@ -126,20 +141,20 @@ return {
             port = 4322,
             processId = require("dap.utils").pick_process,
             cwd = "${workspaceFolder}",
-            remoteRoot = '/usr/src/app'
+            remoteRoot = "/usr/src/app",
           },
           {
             name = "Attach to API",
             type = "pwa-node",
             request = "attach",
             port = 4322,
-            remoteRoot = '/usr/src/app',
-            cwd=vim.fn.getcwd()
-          }
+            remoteRoot = "/usr/src/app",
+            cwd = vim.fn.getcwd(),
+          },
         }
       end
-  end,
-},
+    end,
+  },
   {
     "linux-cultist/venv-selector.nvim",
     dependencies = {
@@ -151,10 +166,10 @@ return {
     },
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
-{
-  "neovim/nvim-lspconfig",
-  opts = {
-    -- make sure mason installs the server
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      -- make sure mason installs the server
       --
       setup = {
         ruff_lsp = function()
@@ -173,59 +188,58 @@ return {
           end)
         end,
       },
-    servers = {
-      ---@type lspconfig.options.tsserver
-      tsserver = {
-        keys = {
-          {
-            "<leader>co",
-            function()
-              vim.lsp.buf.code_action({
-                apply = true,
-                context = {
-                  only = { "source.organizeImports.ts" },
-                  diagnostics = {},
-                },
-              })
-            end,
-            desc = "Organize Imports",
-          },
-          {
-            "<leader>cR",
-            function()
-              vim.lsp.buf.code_action({
-                apply = true,
-                context = {
-                  only = { "source.removeUnused.ts" },
-                  diagnostics = {},
-                },
-              })
-            end,
-            desc = "Remove Unused Imports",
-          },
-        },
-        settings = {
-          typescript = {
-            format = {
-              indentSize = vim.o.shiftwidth,
-              convertTabsToSpaces = vim.o.expandtab,
-              tabSize = vim.o.tabstop,
+      servers = {
+        ---@type lspconfig.options.tsserver
+        tsserver = {
+          keys = {
+            {
+              "<leader>co",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+            {
+              "<leader>cR",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.removeUnused.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Remove Unused Imports",
             },
           },
-          javascript = {
-            format = {
-              indentSize = vim.o.shiftwidth,
-              convertTabsToSpaces = vim.o.expandtab,
-              tabSize = vim.o.tabstop,
+          settings = {
+            typescript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
             },
-          },
-          completions = {
-            completeFunctionCalls = true,
+            javascript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            completions = {
+              completeFunctionCalls = true,
+            },
           },
         },
       },
     },
   },
-}
-
 }
