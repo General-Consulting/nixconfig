@@ -58,7 +58,7 @@
     ndi
     busybox
     stylua
-      (luajit.withPackages (p: with p; [ luacheck ]))
+      (luajit.withPackages (p: with p; [ luacheck magick ]))
       lua-language-server
     lua54Packages.luarocks-nix
     luarocks-packages-updater
