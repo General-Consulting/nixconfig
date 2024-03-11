@@ -62,6 +62,7 @@
     obsidian
     ndi
     busybox
+    kitty
     imagemagick
     stylua
       (luajit.withPackages (p: with p; [ luacheck magick ]))
