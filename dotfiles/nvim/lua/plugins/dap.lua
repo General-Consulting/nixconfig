@@ -49,7 +49,7 @@ return {
               }
       }
     end
-}
+},
 {
   "mfussenegger/nvim-dap",
   optional = true,
