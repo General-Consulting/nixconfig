@@ -22,7 +22,7 @@ return {
       "mfussenegger/nvim-dap",
     },
     opts = function()
-      if not dap.adapters["node-terminal"] then
+      if not require("dap").adapters["node-terminal"] then
         require("dap").adapters["pwa-node"] = {
           type = "server",
           host = "localhost",
