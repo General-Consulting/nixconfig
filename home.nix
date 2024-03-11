@@ -57,6 +57,7 @@
     obsidian
     ndi
     busybox
+    imagemagick
     stylua
       (luajit.withPackages (p: with p; [ luacheck magick ]))
       lua-language-server
