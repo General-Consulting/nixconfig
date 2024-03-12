@@ -171,7 +171,7 @@ myStartupHook = do
 --  spawnOnce "alacritty -T currentProj --class currentProj,alacritty -e sh -c \"cd src/pdf && nix develop && nvim .\""
   spawnOnce "obsidian"
   spawnOnce "google-chrome-stable"
-  spawnOnce "flame-shot"
+  spawnOnce "flameshot"
 --  spawnOnce
 --    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 18 --transparent true --tint 0x5f5f5f &"
   -- workaround for Java Swing/GUI apps not working

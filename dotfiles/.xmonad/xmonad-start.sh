@@ -23,4 +23,4 @@ if [ -x $(command -v stalonetray) ]; then
 		&
 fi
 
-flame-shot
+flameshot
