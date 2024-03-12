@@ -163,14 +163,15 @@ myGray = "gray"
 winKey = mod4Mask
 ctrlKey = controlMask
 
-myTerminal = "alacritty"
+myTerminal = "kitty"
 
 myStartupHook = do
   spawnOnce "/home/geoff/.xmonad/xmonad-start.sh"
-  spawnOnce "alacritty -T nixconfig --class nixconfig,alacritty -e sh -c \"cd nixconfig && nvim .\""
-  spawnOnce "alacritty -T currentProj --class currentProj,alacritty -e sh -c \"cd src/pdf && nix develop && nvim .\""
+--  spawnOnce "alacritty -T nixconfig --class nixconfig,alacritty -e sh -c \"cd nixconfig && nvim .\""
+--  spawnOnce "alacritty -T currentProj --class currentProj,alacritty -e sh -c \"cd src/pdf && nix develop && nvim .\""
   spawnOnce "obsidian"
   spawnOnce "google-chrome-stable"
+  spawnOnce "flame-shot"
 --  spawnOnce
 --    "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 18 --transparent true --tint 0x5f5f5f &"
   -- workaround for Java Swing/GUI apps not working
