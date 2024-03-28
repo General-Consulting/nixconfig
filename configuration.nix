@@ -159,6 +159,7 @@ enp3s0.ipv4.addresses = [{
     cloudflared
     libclang
     cmake
+    htop
     gcc
     zig
     ripgrep
