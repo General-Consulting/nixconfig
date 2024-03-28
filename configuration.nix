@@ -176,6 +176,7 @@ enp3s0.ipv4.addresses = [{
     linuxHeaders
     stalonetray
     xorg.xmodmap
+    gnome.gnome-disk-utility
   ];
 
   environment.variables = {
