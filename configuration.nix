@@ -120,6 +120,9 @@ enp3s0.ipv4.addresses = [{
   };
 
   services.tailscale.enable = false;
+  services.devmon.enable = true;
+  services.gvfs.enable = true; 
+  services.udisks2.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.geoff = {
