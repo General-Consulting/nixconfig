@@ -160,6 +160,8 @@ enp3s0.ipv4.addresses = [{
     libclang
     cmake
     htop
+    glibc
+    libgcc
     gcc
     zig
     ripgrep
