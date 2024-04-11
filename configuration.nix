@@ -13,6 +13,7 @@
     ./nixos-hardware/common/cpu/amd
     ./nixos-hardware/common/gpu/amd
     ./nixos-hardware/common/cpu/amd/pstate.nix
+    ./nix/chitubox-overlay.nix
   ];
 
   # Bootloader.
@@ -148,6 +149,7 @@ enp3s0.ipv4.addresses = [{
     git
     vifm-full
     zsh
+    chitubox
     oh-my-zsh
     alacritty
     gnumake

@@ -125,8 +125,9 @@
     userEmail = "geoff@generalconsulting.io";
 
     extraConfig = {
-      merge = { tool = "vimdiff"; };
-      diff = { tool = "vimdiff"; };
+      merge = { tool = "lazygit"; };
+      diff = { tool = "lazygit"; };
+      editor = "vim";
     };
   };
 
