@@ -17,7 +17,7 @@ require("lazy").setup({
       "folke/which-key.nvim",
       opts = {
         defaults = {
-          y = {
+          c = {
             name = "ChatGPT",
             c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
             e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
