@@ -11,7 +11,7 @@
       "nvim-telescope/telescope.nvim"
     }
   keys = {
-      {"<leader>fc" , "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
+      {"<leader>mc" , "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
     }
   }
 
