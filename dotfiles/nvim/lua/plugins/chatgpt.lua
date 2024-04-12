@@ -10,8 +10,8 @@
       "folke/trouble.nvim",
       "nvim-telescope/telescope.nvim"
     }
-  keys =
-  a = {
+  keys = {
+a = {
   name = "ChatGPT (LLM)",
     c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
     e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
@@ -28,3 +28,4 @@
     l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
   },
 }
+  }
