@@ -24,6 +24,5 @@
     {"<Leader>ax" , "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
     {"<Leader>ar" , "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
     {"<Leader>al" , "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
-  },
 }
   }
