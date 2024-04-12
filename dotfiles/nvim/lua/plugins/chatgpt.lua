@@ -11,7 +11,7 @@
       "nvim-telescope/telescope.nvim"
     }
   keys =
-  l = {
+  a = {
   name = "ChatGPT (LLM)",
     c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
     e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
