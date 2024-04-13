@@ -126,8 +126,9 @@ return {
             -- node_path = "node",
 
             -- Path to vscode-js-debug installation.
-            -- Command to use to launch the debug server. Takes precedence over "node_path" and "debugger_path"
+            -- Command to use to lkeaunch the debug server. Takes precedence over "node_path" and "debugger_path"
             -- debugger_cmd = { "js-debug-adapter" },
+            debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
 
             -- which adapters to register in nvim-dap
             adapters = {

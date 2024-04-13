@@ -62,6 +62,10 @@
         devshells.default = {
           name = "geoff's nix config";
 
+          packages = with pkgs; [
+            nodejs_20
+          ]
+
         commands = [
           {
               help = "deploy the OS (configuration.nix)";
