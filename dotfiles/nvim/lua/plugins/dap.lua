@@ -96,7 +96,7 @@ return {
       {
         "<leader>da",
         function()
-          if vim.fn.filereadable(".vscode/launch.json") then
+          if vim.fn.filereadable(vim.fn.getcwd() .. "/.vscode/launch.json") then
             local dap_vscode = require("dap.ext.vscode")
             dap_vscode.load_launchjs(nil, {
               ["pwa-node"] = js_based_languages,
@@ -126,7 +126,7 @@ return {
             -- node_path = "node",
 
             -- Path to vscode-js-debug installation.
-            debugger_path = vim.fn.resolve("/home/geoff/lazy/vscode-js-debug"),
+            debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/home/geoff/lazy/vscode-js-debug"),
 
             -- Command to use to launch the debug server. Takes precedence over "node_path" and "debugger_path"
             -- debugger_cmd = { "js-debug-adapter" },
