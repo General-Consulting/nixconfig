@@ -126,7 +126,7 @@ return {
             -- node_path = "node",
 
             -- Path to vscode-js-debug installation.
-            debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
+            debugger_path = vim.fn.resolve("/home/geoff/lazy/vscode-js-debug"),
 
             -- Command to use to launch the debug server. Takes precedence over "node_path" and "debugger_path"
             -- debugger_cmd = { "js-debug-adapter" },
