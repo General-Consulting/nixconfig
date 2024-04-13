@@ -37,14 +37,13 @@ return {
           },
           --
           {
-            name = "Next.js: debug server-side",
+            name = "Next.js: debug server-side (nvim)",
             type = "pwa-node",
             request = "launch",
             cwd = vim.fn.getcwd(),
             runtimeExecutable = "yarn",
             runtimeArgs = { "run", "dev" },
             sourceMaps = false,
-            outFiles = { vim.fn.getcwd() .. "/.next/dist/server/src/*.js" },
           },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)
           {
