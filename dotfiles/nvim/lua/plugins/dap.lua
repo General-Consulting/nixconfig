@@ -44,6 +44,7 @@ return {
             runtimeExecutable = "yarn",
             runtimeArgs = { "run", "dev" },
             sourceMaps = false,
+            outFiles = { vim.fn.getcwd() .. "/.next/dist/server/src/*.js" },
           },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)
           {
