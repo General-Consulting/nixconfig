@@ -43,7 +43,7 @@ return {
             cwd = vim.fn.getcwd(),
             runtimeExecutable = "yarn",
             runtimeArgs = { "run", "dev" },
-            sourceMaps = true,
+            sourceMaps = false,
           },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)
           {
