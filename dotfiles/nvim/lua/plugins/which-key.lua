@@ -2,7 +2,7 @@ return {
   "folke/which-key.nvim",
   opts = {
     defaults = {
-      z = {
+      c = {
         name = "ChatGPT",
         c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
         e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
