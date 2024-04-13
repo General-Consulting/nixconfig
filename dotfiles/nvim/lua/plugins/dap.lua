@@ -35,6 +35,15 @@ return {
             cwd = vim.fn.getcwd(),
             sourceMaps = true,
           },
+          {
+      name= "Next.js: debug server-side",
+      type= "pwa-node",
+      request= "launch",
+      cwd= "vim.fn.getcwd()",
+      runtimeExecutable= "yarn",
+      runtimeArgs= ["run-script", "dev"],
+      sourceMaps= true
+    },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)
           {
             type = "pwa-node",
