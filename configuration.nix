@@ -13,7 +13,6 @@
     ./nixos-hardware/common/cpu/amd
     ./nixos-hardware/common/gpu/amd
     ./nixos-hardware/common/cpu/amd/pstate.nix
-    ./nix/chitubox-overlay.nix
   ];
 
   # Bootloader.
@@ -120,7 +119,7 @@ enp3s0.ipv4.addresses = [{
     #jack.enable = true;
   };
 
-  services.tailscale.enable = false;
+  services.tailscale.enable = true;
   services.devmon.enable = true;
   services.gvfs.enable = true; 
   services.udisks2.enable = true;
@@ -149,7 +148,6 @@ enp3s0.ipv4.addresses = [{
     git
     vifm-full
     zsh
-    chitubox
     oh-my-zsh
     alacritty
     gnumake
@@ -218,6 +216,7 @@ enp3s0.ipv4.addresses = [{
     enable = false;
     publish.enable = true;
   };
+
 
 
 
