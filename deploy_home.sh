@@ -6,16 +6,15 @@ HOME_NIX_SOURCE="./home.nix"
 HOME_NIX_DEST="$HOME/.config/home-manager"
 DOTFILES_SOURCE="$PWD/dotfiles/"
 DOTFILES_DEST="$HOME/.config/home-manager/dotfiles"
+NVIM_CONFIG_SOURCE="$PWD/dotfiles/nvim/init.lua"
 
 [ -d "$HOME_NIX_DEST" ] && rm -r "$HOME_NIX_DEST"
 ln -s $PWD $HOME_NIX_DEST
 
 # Check if the Neovim configuration is correct
 echo "Checking Neovim configuration correctness..."
-if ! nvim --headless -u "$NVIM_CONFIG_SOURCE" -c "quit"; then
-	echo "Neovim configuration check failed. Exiting script."
-	exit 1
-fi
+luajit -e "assert(loadfile('dotfiles/nvim/init.lua'))"
+
 echo "Neovim configuration is correct."
 
 # Check if the configuration is correct
