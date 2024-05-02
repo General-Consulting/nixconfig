@@ -59,6 +59,7 @@
     ffmpeg
     gnome.nautilus
     cargo
+    discord-ptb
     obsidian
     ndi
     busybox
