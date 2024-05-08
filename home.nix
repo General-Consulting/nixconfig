@@ -47,6 +47,7 @@
     picom
     stalonetray
     xorg.xmodmap
+    freecad
     vimb
     pavucontrol
     shotcut
@@ -137,10 +138,15 @@
     plugins = with pkgs.vimPlugins; [ nerdtree ];
   };
 
+
   programs.neovim = {
       enable = true;
       package = pkgs.neovim-nightly;
       extraLuaPackages = ps: [ ps.magick ];
     };
+
+  xsession.profileExtra = ''
+
+  '';
 
 }
