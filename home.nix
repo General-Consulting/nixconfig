@@ -33,7 +33,6 @@
                   editorconfig.editorconfig
                   christian-kohler.npm-intellisense
                   bradlc.vscode-tailwindcss
-                  denoland.vscode-deno
                   wix.vscode-import-cost
                 ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
 
