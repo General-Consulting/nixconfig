@@ -175,6 +175,8 @@ enp3s0.ipv4.addresses = [{
     moreutils
     linuxHeaders
     stalonetray
+    spacenavd
+    libspnav
     xorg.xmodmap
     gnome.gnome-disk-utility
   ];
@@ -193,6 +195,8 @@ enp3s0.ipv4.addresses = [{
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+
+  hardware.spacenavd.enable = true;
 
   #  programs.ssh.extraConfig = ''
   #    IdentityFile /home/geoff/.ssh/id_rsa_github
