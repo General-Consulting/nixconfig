@@ -178,6 +178,7 @@ enp3s0.ipv4.addresses = [{
     spacenavd
     libspnav
     xorg.xmodmap
+    fontfinder
     gnome.gnome-disk-utility
   ];
 
