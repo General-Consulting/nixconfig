@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, config, ... }:
+{ pkgs,  lib,  ... }:
 {
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -244,34 +244,27 @@ enp3s0.ipv4.addresses = [{
   # Or disable the firewall altogether.
   networking.networkmanager.enable = true;
 
-  networking.firewall.enable = true;
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
   system.stateVersion = "24.05";
 
-  virtualisation = { docker = { enable = true; }; };
-  networking.nftables = {
-    enable = true;
-    ruleset = ''
-      table ip nat {
-        chain PREROUTING {
-          type nat hook prerouting priority dstnat; policy accept;
-          iifname "enp2s0" tcp dport 80 dnat to 192.168.49.2
-        }
-      }
-    '';
+  networking.firewall = {
+      enable = true;
+      allowedTCPPortRanges = [
+        {from= 3000; to =7000;}
+      ];
   };
 
-  networking.nat = {
-    enable = true;
-    internalInterfaces = [ "enp2s0" ];
-    externalInterface = "br-a86e09d74a1a";
-    forwardPorts = [{
-      sourcePort = 80;
-      proto = "tcp";
-      destination = "192.168.49.2:80";
-    }];
+  virtualisation = { 
+    docker = { 
+      enable = true; 
+      daemon.settings.ip = "127.0.0.1";
+    }; 
+  };
+
+  networking.nftables = {
+    enable = false;
   };
 
   networking.extraHosts = ''
