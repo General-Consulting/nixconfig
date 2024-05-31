@@ -251,9 +251,8 @@ enp3s0.ipv4.addresses = [{
 
   networking.firewall = {
       enable = true;
-      allowedTCPPortRanges = [
-        {from= 3000; to =7000;}
-      ];
+      allowedTCPPorts = [22];
+      logRefusedPackets = true;
   };
 
   virtualisation = { 
@@ -263,9 +262,6 @@ enp3s0.ipv4.addresses = [{
     }; 
   };
 
-  networking.nftables = {
-    enable = false;
-  };
 
   networking.extraHosts = ''
     		192.168.0.106 nixos
