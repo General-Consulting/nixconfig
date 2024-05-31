@@ -244,7 +244,7 @@ enp3s0.ipv4.addresses = [{
   # Or disable the firewall altogether.
   networking.networkmanager.enable = true;
 
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
