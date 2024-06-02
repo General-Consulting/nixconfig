@@ -96,6 +96,8 @@
     fzf
     lazygit
     feh
+    git
+    git-lfs
     picom
     stalonetray
     xorg.xmodmap
@@ -193,7 +195,6 @@
 
   programs.neovim = {
       enable = true;
-      package = pkgs.neovim-nightly;
       extraLuaPackages = ps: [ ps.magick ];
     };
 
