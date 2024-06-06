@@ -141,6 +141,7 @@ enp3s0.ipv4.addresses = [{
     appeditor
     formatter
     cryptsetup
+    umount
     gnome.simple-scan
     indicator-application-gtk3
     wget
