@@ -140,6 +140,7 @@ enp3s0.ipv4.addresses = [{
   environment.systemPackages = with pkgs; [
     appeditor
     formatter
+    cryptsetup
     gnome.simple-scan
     indicator-application-gtk3
     wget
