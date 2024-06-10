@@ -114,6 +114,9 @@
     ffmpeg
     gnome.nautilus
     cargo
+    slack
+    protonvpn-gui
+    protonvpn-cli
     discord-ptb
     obsidian
     ndi
