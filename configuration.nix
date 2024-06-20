@@ -110,13 +110,21 @@ enp3s0.ipv4.addresses = [{
   ];
 
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio = {
+    enable = false;
+    extraConfig = "load-module module-combine-sink";
+    configFile = pkgs.runCommand "default.pa" {} ''
+  sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
+    ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+'';
+
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    #jack.enable = true;
+    jack.enable = true;
   };
 
   services.tailscale.enable = true;
@@ -136,6 +144,7 @@ enp3s0.ipv4.addresses = [{
   users.extraGroups.docker.members = [ "geoff" "minikube" ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.pulseaudio = true;
 
   environment.systemPackages = with pkgs; [
     appeditor
@@ -247,9 +256,9 @@ enp3s0.ipv4.addresses = [{
   networking.networkmanager.enable = true;
 
 
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = true;
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 
   networking.firewall = {
       enable = true;
