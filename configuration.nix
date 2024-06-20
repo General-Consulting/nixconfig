@@ -136,7 +136,7 @@ enp3s0.ipv4.addresses = [{
   users.users.geoff = {
     isNormalUser = true;
     description = "geoff";
-    extraGroups = [ "networkmanager" "wheel" "docker" "root" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "root" "audio"];
     shell = pkgs.zsh;
     packages = with pkgs; [ home-manager ];
   };
