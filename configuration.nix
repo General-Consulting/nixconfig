@@ -259,7 +259,7 @@ enp3s0.ipv4.addresses = [{
 
   systemd.services.NetworkManager-wait-online.enable = true;
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "24.05";
 
   networking.firewall = {
       enable = true;

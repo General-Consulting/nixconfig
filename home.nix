@@ -115,6 +115,7 @@
     gnome.nautilus
     cargo
     slack
+    jamesdsp
     protonvpn-gui
     protonvpn-cli
     discord-ptb
