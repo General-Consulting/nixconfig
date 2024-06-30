@@ -116,6 +116,8 @@
     cargo
     slack
     jamesdsp
+    nix-du
+    graphviz
     protonvpn-gui
     protonvpn-cli
     discord-ptb
