@@ -19,7 +19,7 @@
   home.username = "geoff";
   home.homeDirectory = "/home/geoff";
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
     plantuml

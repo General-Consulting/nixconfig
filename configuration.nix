@@ -270,23 +270,18 @@ enp3s0.ipv4.addresses = [{
   virtualisation = { 
     docker = { 
       enable = true; 
-      daemon.settings.ip = "127.0.0.1";
+      rootless.enable = true;
+      daemon = {
+        settings = {
+          ip = "127.0.0.1";
+          dns = ["1.1.1.1"];
+        };
+      };
     }; 
   };
 
 
   networking.extraHosts = ''
-    		192.168.0.106 nixos
-    		127.0.0.1 tunnel
-    		127.0.0.1 hasura
-    		127.0.0.1 backend
-    		127.0.0.1 api
-    		127.0.0.1 web
-    		127.0.0.1 oathkeeper
-        192.168.49.2 mail.test.info
-        192.168.49.2 ory.test.info
-        192.168.49.2 ory-admin.test.info
-        192.168.49.2 pdf.test.info
     	'';
 
 }
