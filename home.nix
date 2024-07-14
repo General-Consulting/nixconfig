@@ -101,7 +101,6 @@
     picom
     stalonetray
     xorg.xmodmap
-    freecad
     vimb
     pavucontrol
     shotcut

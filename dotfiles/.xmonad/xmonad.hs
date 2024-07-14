@@ -45,7 +45,8 @@ import           XMonad.Util.EZConfig           ( mkKeymap
                                                 )
 import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
-import           XMonad.Util.Ungrab
+
+import          XMonad.Operations.unGrab
 import qualified XMonad.Util.ExtensibleState   as XS
 import           XMonad.Hooks.FadeWindows
 import           XMonad.Hooks.StatusBar.PP      (filterOutWsPP)
@@ -192,6 +193,7 @@ myManageHook = composeAll
   , className =? "Google-chrome" --> doShift "1"
   , className =? "currentProj" --> doShift "3"
   , className =? "nixconfig" --> doShift "4"
+  , className =? "Cypress" --> doShift "7"
   , className =? "obsidian" --> doShift "8"
   -- move transient windows like dialogs/alerts on top of their parents
   , transience'
