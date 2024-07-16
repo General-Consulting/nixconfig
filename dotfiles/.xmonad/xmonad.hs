@@ -46,7 +46,7 @@ import           XMonad.Util.EZConfig           ( mkKeymap
 import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
 
-import          XMonad.Operations.unGrab
+import           XMonad.Operations.unGrab
 import qualified XMonad.Util.ExtensibleState   as XS
 import           XMonad.Hooks.FadeWindows
 import           XMonad.Hooks.StatusBar.PP      (filterOutWsPP)
@@ -147,7 +147,7 @@ overlayMyBaseSettings baseConfig = baseConfig
   }
 
 myFadeHook = composeAll [                 transparency 0.02
-                        , isUnfocused --> transparency 0.1
+                        , isUnfocused --> transparency 0.0
                         ]
 -- Define how xmonad-workspace-status is displayed.
 -- Every bar has a textarea for displaying that.
