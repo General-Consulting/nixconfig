@@ -109,7 +109,6 @@ enp3s0.ipv4.addresses = [{
     epiphany
   ];
 
-  sound.enable = true;
   hardware.pulseaudio = {
     enable = false;
     extraConfig = "load-module module-combine-sink";
