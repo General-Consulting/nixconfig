@@ -23,59 +23,6 @@
 
   home.packages = with pkgs; [
     plantuml
-              (vscode-with-extensions.override {
-                vscode = vscode;
-                vscodeExtensions = with vscode-extensions; [
-                  jnoortheen.nix-ide
-                  vscodevim.vim
-                  yzhang.markdown-all-in-one
-                  eamodio.gitlens
-                  editorconfig.editorconfig
-                  christian-kohler.npm-intellisense
-                  bradlc.vscode-tailwindcss
-                  wix.vscode-import-cost
-                ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-
-
-                  {
-                    name = "autoclosetabs";
-                    publisher = "Zwyx";
-                    version = "1.1.2";
-                    sha256 = "sha256-yZUAyBnGYFZQ7VXYsTfzF2rl6rAQ+DeZVC2FNMzw/uc=";
-                  }
-                  {
-                    name = "deepdark-material";
-                    publisher = "Nimda";
-                    version = "3.3.1";
-                    sha256 = "sha256-gc7B3h+r4UXO0WSVsscOa5nY4RRxG5XX3zrC1E1WJ3k=";
-                  }
-                  {
-                    name = "copilot";
-                    publisher = "Github";
-                    version = "1.165.0";
-                    sha256 = "sha256-8HvWb5zaoUdZ+BsAnW2TM20LqGwZshxgeJDEYKZOFgg=";
-                  }
-                  {
-                    name = "back-n-forth";
-                    publisher = "nick-rudenko";
-                    version = "3.1.1";
-                    sha256 = "sha256-yircrP2CjlTWd0thVYoOip/KPve24Ivr9f6HbJN0Haw=";
-                  }
-                  {
-                    name = "smart-tabs";
-                    publisher = "Valsorym";
-                    version = "1.3.2";
-                    sha256 = "sha256-RRL9DHQnZT64wIBvKC+f+6ga4kRptH98zpljfHc+Cu4=";
-                  }
-                  {
-                    name = "prettier-vscode";
-                    publisher = "esbenp";
-                    version = "10.4.0";
-                    sha256 = "sha256-8+90cZpqyH+wBgPFaX5GaU6E02yBWUoB+T9C2z2Ix8c=";
-                  }
-                ];
-              }
-            )
     awscli2
     tmux
     tailscale
