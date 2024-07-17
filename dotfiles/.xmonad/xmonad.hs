@@ -46,7 +46,6 @@ import           XMonad.Util.EZConfig           ( mkKeymap
 import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
 
-import           XMonad.Operations              (unGrab)
 import qualified XMonad.Util.ExtensibleState   as XS
 import           XMonad.Hooks.FadeWindows
 import           XMonad.Hooks.StatusBar.PP      (filterOutWsPP)
