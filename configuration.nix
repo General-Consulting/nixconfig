@@ -71,7 +71,8 @@ enp3s0.ipv4.addresses = [{
         enable = true;
         enableContribAndExtras = false;
         extraPackages = hpkgs: with hpkgs; [ xmobar  xmonad-contrib xmonad-extras ];
-        enableConfiguredRecompile = true;
+        enableConfiguredRecompile = false;
+        haskellPackages = pkgs.haskellPackages;
       };
     };
 
