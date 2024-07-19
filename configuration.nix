@@ -70,7 +70,7 @@ enp3s0.ipv4.addresses = [{
       xmonad = {
         enable = true;
         enableContribAndExtras = false;
-        extraPackages = hpkgs: [ hpkgs.xmobar ];
+        extraPackages = hpkgs: with hpkgs; [ xmobar  xmonad-contrib xmonad-extras ];
         enableConfiguredRecompile = true;
       };
     };
