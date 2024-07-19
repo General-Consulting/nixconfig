@@ -69,7 +69,7 @@ enp3s0.ipv4.addresses = [{
     windowManager = {
       xmonad = {
         enable = true;
-        enableContribAndExtras = true;
+        enableContribAndExtras = false;
         extraPackages = hpkgs: [ hpkgs.xmobar ];
         enableConfiguredRecompile = true;
       };
