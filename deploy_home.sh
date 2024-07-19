@@ -33,8 +33,7 @@ commit_msg=${commit_msg:-'Capturing new home-manager config'}
 
 # Proceed with git operations
 echo "Committing changes to Git with message: '$commit_msg'..."
-git add .
-git commit -m "$commit_msg"
+git add . && git commit -m "$commit_msg" || true
 
 # Apply the actual home-manager configuration changes
 echo "Applying home-manager changes..."
