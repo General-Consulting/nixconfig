@@ -38,7 +38,8 @@
     nerdfonts
     shellcheck
     trayer
-    haskellPackages.xmonad
+    haskellPackages.xmonad_0_18_0
+    haskellPackages.xmonad-contrib
     haskellPackages.xmobar
     fzf
     lazygit
