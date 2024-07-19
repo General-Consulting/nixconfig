@@ -26,7 +26,6 @@ import           XMonad.Layout.LayoutCombinators
                                                 )
 
 
-import 
 import           XMonad.Util.SpawnOnce          ( spawnOnce )
 import           XMonad.Util.Run                ( safeSpawn
                                                 , unsafeSpawn
