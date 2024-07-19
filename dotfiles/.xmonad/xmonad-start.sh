@@ -17,7 +17,7 @@ if [ -x $(command -v stalonetray) ]; then
 		--max-geometry 7x1-0+0 \
 		--background '#ffffff' \
 		--skip-taskbar \
-		--icon-size 12 \
+		--icon-size 36 \
 		--kludges force_icons_size \
 		--window-strut none \
 		&
