@@ -131,6 +131,7 @@ enp3s0.ipv4.addresses = [{
   services.devmon.enable = true;
   services.gvfs.enable = true; 
   services.udisks2.enable = true;
+  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.geoff = {
@@ -193,6 +194,7 @@ enp3s0.ipv4.addresses = [{
     xorg.xmodmap
     fontfinder
     gnome.gnome-disk-utility
+    gnomeExtensions.appindicator
   ];
 
   environment.variables = {
@@ -205,6 +207,7 @@ enp3s0.ipv4.addresses = [{
     vimAlias = true;
   };
 
+  programs.dconf.enable = true;
   programs.noisetorch.enable = true;
 
   hardware.bluetooth.enable = true;
