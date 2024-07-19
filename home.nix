@@ -144,6 +144,12 @@
     plugins = with pkgs.vimPlugins; [ nerdtree ];
   };
 
+  dconf.settings = {
+      "org/gnome/nautilus/preferences" = {
+          default-folder-viewer = "list-view";
+        };
+    };
+
 
   programs.neovim = {
       enable = true;
