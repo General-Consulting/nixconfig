@@ -71,6 +71,7 @@ enp3s0.ipv4.addresses = [{
         enable = true;
         enableContribAndExtras = true;
         extraPackages = hpkgs: [ hpkgs.xmobar ];
+        enableConfiguredRecompile = true;
       };
     };
 
