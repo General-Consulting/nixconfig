@@ -43,7 +43,6 @@ import           XMonad.Util.EZConfig           ( mkKeymap
                                                 , additionalKeysP
                                                 , additionalKeys
                                                 )
-import           XMonad.Operations              ( unGrab )
 import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
 
