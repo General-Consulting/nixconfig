@@ -26,6 +26,7 @@ import           XMonad.Layout.LayoutCombinators
                                                 )
 
 
+import 
 import           XMonad.Util.SpawnOnce          ( spawnOnce )
 import           XMonad.Util.Run                ( safeSpawn
                                                 , unsafeSpawn
@@ -43,6 +44,7 @@ import           XMonad.Util.EZConfig           ( mkKeymap
                                                 , additionalKeysP
                                                 , additionalKeys
                                                 )
+import           XMonad.Operations              ( unGrab )
 import           XMonad.Util.NamedActions
 import           XMonad.Util.NamedScratchpad
 
