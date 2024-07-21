@@ -3,7 +3,7 @@ Config
 , fgColor =      "white"
 , font =         "xft:Bitstream Vera Sans Mono:size=36:bold:antialias=true:hinting=true,Font Awesome 5 Free Solid:size=36:antialias=true:hinting=true"
 --, additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
-, position = TopW L 95
+, position = TopW L 85
 -- , border =       BottomB
 -- , borderColor = "black"
 -- general behavior
