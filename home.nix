@@ -100,6 +100,10 @@
     "monitors.sh".source = ./dotfiles/monitors.sh;
   };
 
+  services.blueman-applet  = {
+      enable = true;
+    };
+
   programs.rofi = {
     enable = true;
     terminal = "${pkgs.alacritty}/bin/alacritty";

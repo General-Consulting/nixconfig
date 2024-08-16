@@ -239,6 +239,8 @@ enp3s0.ipv4.addresses = [{
     publish.enable = true;
   };
 
+  services.blueman.enable = true;
+
 
 
 
