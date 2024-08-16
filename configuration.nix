@@ -170,7 +170,7 @@ enp3s0.ipv4.addresses = [{
     dmenu
     nixpkgs-fmt
     trayer
-    haskellPackages.xmonad_0_18_0
+    haskellPackages.xmonad
     haskellPackages.xmonad-contrib
     haskellPackages.xmobar
     neovim
