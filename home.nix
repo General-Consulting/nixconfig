@@ -23,7 +23,6 @@
 
   home.packages = with pkgs; [
     plantuml
-    awscli2
     tmux
     tailscale
     kubectl
