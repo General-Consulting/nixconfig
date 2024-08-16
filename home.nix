@@ -59,7 +59,6 @@
     gnome.nautilus
     cargo
     slack
-    slack-cli
     jamesdsp
     nix-du
     graphviz
