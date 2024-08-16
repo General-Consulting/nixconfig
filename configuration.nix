@@ -172,6 +172,7 @@ enp3s0.ipv4.addresses = [{
     trayer
     haskellPackages.xmonad
     haskellPackages.xmonad-contrib
+
     haskellPackages.xmobar
     neovim
     cloudflared
