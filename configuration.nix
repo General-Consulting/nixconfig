@@ -149,7 +149,6 @@ enp3s0.ipv4.addresses = [{
   nixpkgs.config.pulseaudio = true;
 
   environment.systemPackages = with pkgs; [
-  easyeffects
     appeditor
     formatter
     cryptsetup
