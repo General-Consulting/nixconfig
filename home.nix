@@ -61,6 +61,7 @@
     jamesdsp
     nix-du
     graphviz
+    telegram-desktop
     protonvpn-gui
     protonvpn-cli
     discord-ptb
