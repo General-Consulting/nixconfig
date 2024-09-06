@@ -8,7 +8,7 @@
 #        meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
 #      });
 #    });
-#in 
+#in
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -23,6 +23,7 @@
 
   home.packages = with pkgs; [
     plantuml
+    jdk8
     tmux
     tailscale
     kubectl
