@@ -23,7 +23,7 @@
 
   home.packages = with pkgs; [
     plantuml
-    jdk
+    zulu17
     tmux
     tailscale
     kubectl
