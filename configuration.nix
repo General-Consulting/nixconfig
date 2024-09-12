@@ -138,7 +138,7 @@ enp3s0.ipv4.addresses = [{
   users.users.geoff = {
     isNormalUser = true;
     description = "geoff";
-    extraGroups = [ "networkmanager" "wheel" "docker" "root" "audio"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "root" "audio" "proton-vpn"];
     shell = pkgs.zsh;
     packages = with pkgs; [ home-manager ];
   };
@@ -149,6 +149,7 @@ enp3s0.ipv4.addresses = [{
   nixpkgs.config.pulseaudio = true;
 
   environment.systemPackages = with pkgs; [
+    protonvpn-gui
     appeditor
     formatter
     cryptsetup
