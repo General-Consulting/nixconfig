@@ -28,6 +28,7 @@
     tailscale
     kubectl
     synergy
+    nodejs
     direnv
     google-chrome
     flameshot

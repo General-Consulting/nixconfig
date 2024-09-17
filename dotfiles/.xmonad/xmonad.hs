@@ -191,7 +191,6 @@ myManageHook = composeAll
   -- , title =? "Microsoft Teams"  --> doIgnore
   -- , resource =? "microsoft teams - preview"  --> doIgnore
   , isDialog --> doCenterFloat
-  , className =? "Google-chrome" --> doShift "1"
   , className =? "currentProj" --> doShift "3"
   , className =? "nixconfig" --> doShift "4"
   , className =? "Cypress" --> doShift "7"
