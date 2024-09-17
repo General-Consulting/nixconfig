@@ -55,7 +55,7 @@
     firefox
     gopls
     pyright
-    openscad-unstable
+    openscad
     ffmpeg
     gnome.nautilus
     cargo
