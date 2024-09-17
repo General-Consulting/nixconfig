@@ -175,7 +175,6 @@ enp3s0.ipv4.addresses = [{
 
     haskellPackages.xmobar
     neovim
-    cloudflared
     libclang
     cmake
     htop
@@ -245,20 +244,20 @@ enp3s0.ipv4.addresses = [{
 
 
 
- services = {
-    cloudflared = {
-      enable = true;
-      tunnels = {
-        "eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2" = {
-          credentialsFile = "/home/geoff/.cloudflared/eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2.json";
-          ingress = {
-            "tmp1.vteng.io" = { service = "http://localhost:8001"; };
-          };
-          default = "http_status:404";
-        };
-      };
-    };
-  };
+# services = {
+#    cloudflared = {
+#      enable = true;
+#      tunnels = {
+#        "eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2" = {
+#          credentialsFile = "/home/geoff/.cloudflared/eedcc6cc-bdc2-44ba-a4d8-23f5d043b2a2.json";
+#          ingress = {
+#            "tmp1.vteng.io" = { service = "http://localhost:8001"; };
+#          };
+#          default = "http_status:404";
+#        };
+#      };
+#    };
+#  };
 
   # Open ports in the firewall.
   # Or disable the firewall altogether.
