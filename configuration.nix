@@ -50,7 +50,6 @@ enp3s0.ipv4.addresses = [{
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
     noto-fonts-emoji
     liberation_ttf
     fira-code
