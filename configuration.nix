@@ -263,7 +263,7 @@ enp3s0.ipv4.addresses = [{
 
   # Open ports in the firewall.
   # Or disable the firewall altogether.
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
 
 
   systemd.services.NetworkManager-wait-online.enable = true;
