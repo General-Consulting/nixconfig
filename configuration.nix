@@ -242,10 +242,6 @@ enp3s0.ipv4.addresses = [{
   services.blueman.enable = true;
 
 
- swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 32*1024;
-  } ];
 
 # services = {
 #    cloudflared = {
