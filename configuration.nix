@@ -149,6 +149,7 @@ enp3s0.ipv4.addresses = [{
 
   environment.systemPackages = with pkgs; [
     protonvpn-gui
+    networkmanagerapplet
     appeditor
     formatter
     cryptsetup
