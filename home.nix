@@ -68,7 +68,6 @@
     busybox
     zoom-us
     kitty
-    handbrake
     imagemagick
     stylua
       (luajit.withPackages (p: with p; [ luacheck magick ]))
