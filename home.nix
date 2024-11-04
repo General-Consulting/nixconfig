@@ -36,7 +36,6 @@
     scrot
     newman
     xorg.xev
-    nerdfonts
     shellcheck
     trayer
     fzf
@@ -56,7 +55,6 @@
     gopls
     pyright
     openscad
-    ffmpeg
     gnome.nautilus
     cargo
     slack
@@ -116,7 +114,6 @@
 
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.obs-studio-plugins; [ obs-ndi ];
   };
 
   # Let Home Manager install and manage itself.
