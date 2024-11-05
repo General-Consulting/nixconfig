@@ -268,7 +268,7 @@ enp3s0.ipv4.addresses = [{
   system.stateVersion = "24.05";
 
   networking.firewall = {
-      enable = false;
+      enable = true;
       allowedTCPPorts = [22];
       logRefusedPackets = true;
   };
@@ -276,13 +276,6 @@ enp3s0.ipv4.addresses = [{
   virtualisation = { 
     docker = { 
       enable = true; 
-      rootless.enable = true;
-      daemon = {
-        settings = {
-          ip = "127.0.0.1";
-          dns = ["1.1.1.1"];
-        };
-      };
     }; 
   };
 
